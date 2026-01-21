@@ -1,0 +1,51 @@
+{
+  "name": "ZCG_HANA_DATA_RECON",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "private": true,
+  "dependencies": {
+    "@cap-js/hana": "^2",
+    "@sap/cds": "^9",
+    "@sap/xssec": "^4",
+    "express": "^4"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "cds": {
+    "build": {
+      "tasks": [
+        {
+          "for": "hana",
+          "dest": "../db"
+        },
+        {
+          "for": "node-cf"
+        }
+      ]
+    },
+    "requires": {
+      "auth": "mocked",
+      "db": {
+        "kind": "hana-cloud",
+        "model": [
+          "db",
+          "srv"
+        ],
+        "credentials": {
+          "schema": "ZCG_HANA_DATA_RECON_HDI_ZCG_HANA_DATA_RECON_DB_DEPLOYER_1"
+        }
+      }
+    },
+    "hana": {
+      "deploy-format": "hdbtable"
+    }
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "devDependencies": {
+    "cds-plugin-ui5": "^0.13.0"
+  }
+}
