@@ -65,95 +65,51 @@
                                 </f:Card>
 
                                 <!-- Card 4: Total Amount Matched + Unmatched -->
-
                                 <f:Card id="_IDGenCard3" class="sapUiSmallMargin">
-
                                     <f:header>
-
                                         <card:Header id="_IDGenHeader3"
-
                                             title="2.4M"
-
                                             subtitle="Total Reconciliation Amount of POS Sales and Merchant Settlement"
-
                                             iconSrc="sap-icon://money-bills"
-
                                             iconDisplayShape="Circle"/>
-
                                     </f:header>
-
                                     <f:content>
-
                                         <VBox id="_IDGenVBox3" class="sapUiSmallMargin">
-
                                             <ObjectStatus id="_IDGenObjectStatus3" text="+15% from average" state="Success"/>
-
                                         </VBox>
-
                                     </f:content>
-
                                 </f:Card>
 
                                  <!-- Card 5: Matched Amount -->
-
                                 <f:Card id="_IDGenCard4" class="sapUiSmallMargin">
-
                                     <f:header>
-
                                         <card:Header id="_IDGenHeader4"
-
                                             title="2.35M"
-
                                             subtitle="Total Matched Reconciliation Amount of POS Sales and Merchant Settlement"
-
                                             iconSrc="sap-icon://sys-enter-2"
-
                                             iconDisplayShape="Circle"/>
-
                                     </f:header>
-
                                     <f:content>
-
                                         <VBox id="_IDGenVBox8" class="sapUiSmallMargin">
-
                                             <ObjectStatus id="_IDGenObjectStatus8" text="97.9% of total" state="Success"/>
-
                                         </VBox>
-
                                     </f:content>
-
                                 </f:Card>
 
-
-
                                 <!-- Card 6: Unmatched Amount -->
-
                                 <f:Card id="_IDGenCard5" class="sapUiSmallMargin">
-
                                     <f:header>
-
                                         <card:Header id="_IDGenHeader5"
-
                                             title="50K"
-
                                             subtitle="Total Unmatched Reconciliation Amount of POS Sales and Merchant Settlement"
-
                                             iconSrc="sap-icon://sys-cancel-2"
-
                                             iconDisplayShape="Circle"/>
-
                                     </f:header>
-
                                     <f:content>
-
                                         <VBox id="_IDGenVBox9" class="sapUiSmallMargin">
-
                                             <ObjectStatus id="_IDGenObjectStatus9" text="2.1% of total" state="Warning"/>
-
                                         </VBox>
-
                                     </f:content>
-
                                 </f:Card>
                             </l:Grid>
 
