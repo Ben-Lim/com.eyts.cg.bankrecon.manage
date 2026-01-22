@@ -14,6 +14,7 @@ service ReconciliationService {
     // POS Transactions - Read-only access
      @readonly entity POSTransactions as projection on interactions.POSTransactions;
     
+    /*
     // Actions for reconciliation processes
     
     // Action to auto-match transactions based on criteria
@@ -86,8 +87,10 @@ service ReconciliationService {
         totalVariance: Decimal;
         exceptionCount: Integer;
     };
+    */
 }
 
+/*
 // Analytics Service for reporting and dashboards
 service AnalyticsService {
     
@@ -118,3 +121,4 @@ service AnalyticsService {
         exceptionCount: Integer;
     };
 }
+*/

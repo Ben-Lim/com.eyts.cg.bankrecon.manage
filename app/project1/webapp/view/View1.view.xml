@@ -4,6 +4,7 @@
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.f"
     xmlns:card="sap.f.cards"
+    xmlns:core="sap.ui.core"
     displayBlock="true">
     
     <Page id="reconciliationPage" title="Financial Reconciliation System" showNavButton="false">
@@ -14,107 +15,226 @@
                     <!-- DASHBOARD TAB -->
                     <IconTabFilter id="dashboardTab" icon="sap-icon://business-objects-experience" text="Dashboard" key="dashboard">
                         <l:VerticalLayout id="_IDGenVerticalLayout" width="100%">
-                            <!-- KPI Cards Grid -->
-                            <l:Grid id="_IDGenGrid" defaultSpan="XL3 L6 M6 S12" class="sapUiSmallMarginBottom">
-                                <!-- Card 1: Total (Matched + Discrepancies) title="{/totalCount}" -->
-                                <f:Card id="_IDGenCard" class="sapUiSmallMargin">
-                                    <f:header>
-                                        <card:Header id="_IDGenHeader"
-                                            title="1857"  
-                                            subtitle="Total Reconciliation of POS Sales and Merchant Settlement"
-                                            iconSrc="sap-icon://sum"
-                                            iconDisplayShape="Circle"/>
-                                    </f:header>
-                                    <f:content>
-                                        <VBox id="_IDGenVBox" class="sapUiSmallMargin">
-                                            <ObjectStatus id="_IDGenObjectStatus" text="+12% from yesterday" state="Success"/>
-                                        </VBox>
-                                    </f:content>
-                                </f:Card>
 
-                                <!-- Card 2: Matched Today -->
-                                <f:Card id="_IDGenCard1" class="sapUiSmallMargin">
-                                    <f:header>
-                                        <card:Header id="_IDGenHeader1"
-                                            title="1,834"
-                                            subtitle="Matched Today"
-                                            iconSrc="sap-icon://accept"
-                                            iconDisplayShape="Circle"/>
-                                    </f:header>
-                                    <f:content>
-                                        <VBox id="_IDGenVBox1" class="sapUiSmallMargin">
-                                            <ObjectStatus id="_IDGenObjectStatus1" text="+8% vs average" state="Success"/>
-                                        </VBox>
-                                    </f:content>
-                                </f:Card>
+                        <!--  Date Filter and Action Controls -->
+        <Panel id="filterPanel" class="sapUiSmallMargin">
+            <headerToolbar>
+                <OverflowToolbar id="filterToolbar">
+                    <Title id="filterTitle" text="Dashboard Filters" level="H2"/>
+                    <ToolbarSpacer id="filterSpacer"/>
+                    
+                    <!-- Date Range Filter -->
+                    <Label id="fromLabel" text="From:" class="sapUiTinyMarginEnd"/>
+                    <DatePicker id="dateFrom"
+                        value="{/filterDateFrom}"
+                        valueFormat="yyyy-MM-dd"
+                        displayFormat="dd/MM/yyyy"
+                        change="onDateChange"
+                        class="sapUiSmallMarginEnd"/>
+                    
+                    <Label id="toLabel" text="To:" class="sapUiTinyMarginEnd"/>
+                    <DatePicker id="dateTo"
+                        value="{/filterDateTo}"
+                        valueFormat="yyyy-MM-dd"
+                        displayFormat="dd/MM/yyyy"
+                        change="onDateChange"
+                        class="sapUiSmallMarginEnd"/>
+                    
+                    <!-- Quick Filter Buttons -->
+                    <SegmentedButton id="quickDateFilter" 
+                        selectedKey="{/selectedDateRange}"
+                        selectionChange="onQuickDateFilter"
+                        class="sapUiSmallMarginEnd">
+                        <items>
+                            <SegmentedButtonItem id="filterToday" key="today" text="Today"/>
+                            <SegmentedButtonItem id="filterWeek" key="week" text="This Week"/>
+                            <SegmentedButtonItem id="filterMonth" key="month" text="This Month"/>
+                            <SegmentedButtonItem id="filterCustom" key="custom" text="Custom"/>
+                        </items>
+                    </SegmentedButton>
+                    
+                    <!-- Refresh Button -->
+                    <Button id="refreshButton"
+                        icon="sap-icon://refresh"
+                        text="Refresh Data"
+                        type="Emphasized"
+                        press="onRefreshData"
+                        class="sapUiSmallMarginEnd"/>
+                    
+                    <!-- Auto-refresh Toggle -->
+                    <Switch id="autoRefreshSwitch"
+                        state="{/autoRefresh}"
+                        customTextOn="Auto"
+                        customTextOff="Manual"
+                        change="onAutoRefreshToggle"
+                        class="sapUiSmallMarginEnd"/>
+                    
+                    <!-- Last Sync Info -->
+                    <Text id="lastSyncText" 
+                        text="Last sync: {/lastSyncTime}"/>
+                </OverflowToolbar>
+            </headerToolbar>
+        </Panel>
+        <!-- END OF NEW SECTION -->
 
-                                <!-- Card 3: Discrepancies -->
-                                <f:Card id="_IDGenCard2" class="sapUiSmallMargin">
+                            <!-- Combined Amount Summary Card (Full Width) -->
+                            <VBox id="amountSummaryBox" class="sapUiSmallMargin">
+                                <f:Card id="amountSummaryCard">
+                                    <f:customData>
+                                        <core:CustomData id="amountSummaryData" key="cardType" value="amountSummary" />
+                                    </f:customData>
                                     <f:header>
-                                        <card:Header id="_IDGenHeader2"
-                                            title="23"
-                                            subtitle="Discrepancies"
-                                            iconSrc="sap-icon://alert"
-                                            iconDisplayShape="Circle"/>
-                                    </f:header>
-                                    <f:content>
-                                        <VBox id="_IDGenVBox2" class="sapUiSmallMargin">
-                                            <ObjectStatus id="_IDGenObjectStatus2" text="-5% from yesterday" state="Success"/>
-                                        </VBox>
-                                    </f:content>
-                                </f:Card>
-
-                                <!-- Card 4: Total Amount Matched + Unmatched -->
-                                <f:Card id="_IDGenCard3" class="sapUiSmallMargin">
-                                    <f:header>
-                                        <card:Header id="_IDGenHeader3"
-                                            title="2.4M"
-                                            subtitle="Total Reconciliation Amount of POS Sales and Merchant Settlement"
+                                        <card:Header id="amountSummaryHeader"
+                                            title="Reconciliation Amount Summary"
+                                            subtitle="POS Sales and Merchant Settlement Overview"
                                             iconSrc="sap-icon://money-bills"
                                             iconDisplayShape="Circle"/>
                                     </f:header>
                                     <f:content>
-                                        <VBox id="_IDGenVBox3" class="sapUiSmallMargin">
-                                            <ObjectStatus id="_IDGenObjectStatus3" text="+15% from average" state="Success"/>
-                                        </VBox>
+                                        <l:Grid id="_IDGenGrid1" defaultSpan="XL4 L4 M4 S12" class="sapUiSmallMargin">
+                                            <!-- Total Amount Section -->
+                                            <VBox id="totalAmountSection" class="sapUiSmallMargin">
+                                                <HBox id="totalAmountBox" alignItems="Center">
+                                                    <core:Icon id="totalAmountIcon" src="sap-icon://money-bills" size="2rem" color="#0854a0" class="sapUiTinyMarginEnd"/>
+                                                    <VBox id="totalAmountVBox">
+                                                        <Title id="totalAmountTitle" text="2.4M" level="H2"/>
+                                                        <Text id="totalAmountText" text="Total Amount"/>
+                                                    </VBox>
+                                                </HBox>
+                                                <ObjectStatus id="totalAmountStatus" text="+15% from average" state="Success" class="sapUiTinyMarginTop"/>
+                                            </VBox>
+                                            
+                                            <!-- Matched Amount Section -->
+                                            <VBox id="matchedAmountSection" class="sapUiSmallMargin">
+                                                <HBox id="matchedAmountBox" alignItems="Center">
+                                                    <core:Icon id="matchedAmountIcon" src="sap-icon://sys-enter-2" size="2rem" color="#2b7c2b" class="sapUiTinyMarginEnd"/>
+                                                    <VBox id="matchedAmountVBox">
+                                                        <Title id="matchedAmountTitle" text="2.35M" level="H2"/>
+                                                        <Text id="matchedAmountText" text="Matched Amount"/>
+                                                    </VBox>
+                                                </HBox>
+                                                <ObjectStatus id="matchedAmountStatus" text="97.9% of total" state="Success" class="sapUiTinyMarginTop"/>
+                                            </VBox>
+                                            
+                                            <!-- Unmatched Amount Section -->
+                                            <VBox id="unmatchedAmountSection" class="sapUiSmallMargin">
+                                                <HBox id="unmatchedAmountBox" alignItems="Center">
+                                                    <core:Icon id="unmatchedAmountIcon" src="sap-icon://sys-cancel-2" size="2rem" color="#e76500" class="sapUiTinyMarginEnd"/>
+                                                    <VBox id="unmatchedAmountVBox">
+                                                        <Title id="unmatchedAmountTitle" text="50K" level="H2"/>
+                                                        <Text id="unmatchedAmountText" text="Unmatched Amount"/>
+                                                    </VBox>
+                                                </HBox>
+                                                <ObjectStatus id="unmatchedAmountStatus" text="2.1% of total" state="Warning" class="sapUiTinyMarginTop"/>
+                                            </VBox>
+                                        </l:Grid>
                                     </f:content>
                                 </f:Card>
+                            </VBox>
 
-                                 <!-- Card 5: Matched Amount -->
-                                <f:Card id="_IDGenCard4" class="sapUiSmallMargin">
-                                    <f:header>
-                                        <card:Header id="_IDGenHeader4"
-                                            title="2.35M"
-                                            subtitle="Total Matched Reconciliation Amount of POS Sales and Merchant Settlement"
-                                            iconSrc="sap-icon://sys-enter-2"
-                                            iconDisplayShape="Circle"/>
-                                    </f:header>
-                                    <f:content>
-                                        <VBox id="_IDGenVBox8" class="sapUiSmallMargin">
-                                            <ObjectStatus id="_IDGenObjectStatus8" text="97.9% of total" state="Success"/>
-                                        </VBox>
-                                    </f:content>
-                                </f:Card>
+                           <!-- KPI Cards Grid - Fixed layout that maintains consistent sizing -->
+<HBox id="kpiCardsContainer" 
+    class="sapUiSmallMargin"
+    width="100%"
+    justifyContent="SpaceBetween">
 
-                                <!-- Card 6: Unmatched Amount -->
-                                <f:Card id="_IDGenCard5" class="sapUiSmallMargin">
-                                    <f:header>
-                                        <card:Header id="_IDGenHeader5"
-                                            title="50K"
-                                            subtitle="Total Unmatched Reconciliation Amount of POS Sales and Merchant Settlement"
-                                            iconSrc="sap-icon://sys-cancel-2"
-                                            iconDisplayShape="Circle"/>
-                                    </f:header>
-                                    <f:content>
-                                        <VBox id="_IDGenVBox9" class="sapUiSmallMargin">
-                                            <ObjectStatus id="_IDGenObjectStatus9" text="2.1% of total" state="Warning"/>
-                                        </VBox>
-                                    </f:content>
-                                </f:Card>
-                            </l:Grid>
+    <!-- Card 1: Total Reconciliation -->
+    <VBox id="cardBox1" class="sapUiSmallMarginEnd" width="32%">
+        <f:Card id="totalReconciliationCard" width="100%" height="100%">
+            <f:customData>
+                <core:CustomData id="totalCardData" key="cardType" value="total" />
+            </f:customData>
+            <f:header>
+                <card:Header id="totalReconciliationHeader"
+                    title="1857"  
+                    subtitle="Total Reconciliation of POS Sales and Merchant Settlement"
+                    iconSrc="sap-icon://sum"
+                    iconDisplayShape="Circle"/>
+            </f:header>
+            <f:content>
+                <VBox id="totalCardContent" class="sapUiSmallMargin">
+                    <ObjectStatus id="totalCardStatus" text="+12% from yesterday" state="Success"/>
+                    <Button id="cardBtn1" 
+                        text="View Details" 
+                        type="Transparent" 
+                        press="onCardPress"
+                        width="100%"
+                        class="sapUiTinyMarginTop">
+                        <customData>
+                            <core:CustomData key="cardType" value="total" />
+                        </customData>
+                    </Button>
+                </VBox>
+            </f:content>
+        </f:Card>
+    </VBox>
+
+    <!-- Card 2: Matched Today -->
+    <VBox id="cardBox2" class="sapUiSmallMarginEnd" width="32%">
+        <f:Card id="matchedTodayCard" width="100%" height="100%">
+            <f:customData>
+                <core:CustomData id="matchedCardData" key="cardType" value="matched" />
+            </f:customData>
+            <f:header>
+                <card:Header id="matchedTodayHeader"
+                    title="1,834"
+                    subtitle="Matched Today"
+                    iconSrc="sap-icon://accept"
+                    iconDisplayShape="Circle"/>
+            </f:header>
+            <f:content>
+                <VBox id="matchedCardContent" class="sapUiSmallMargin">
+                    <ObjectStatus id="matchedCardStatus" text="+8% vs average" state="Success"/>
+                    <Button id="cardBtn2" 
+                        text="View Details" 
+                        type="Transparent" 
+                        press="onCardPress"
+                        width="100%"
+                        class="sapUiTinyMarginTop">
+                        <customData>
+                            <core:CustomData key="cardType" value="matched" />
+                        </customData>
+                    </Button>
+                </VBox>
+            </f:content>
+        </f:Card>
+    </VBox>
+
+    <!-- Card 3: Discrepancies -->
+    <VBox id="cardBox3" width="32%">
+        <f:Card id="discrepanciesCard" width="100%" height="100%">
+            <f:customData>
+                <core:CustomData id="discrepanciesCardData" key="cardType" value="discrepancies" />
+            </f:customData>
+            <f:header>
+                <card:Header id="discrepanciesHeader"
+                    title="23"
+                    subtitle="Discrepancies"
+                    iconSrc="sap-icon://alert"
+                    iconDisplayShape="Circle"/>
+            </f:header>
+            <f:content>
+                <VBox id="discrepanciesCardContent" class="sapUiSmallMargin">
+                    <ObjectStatus id="discrepanciesCardStatus" text="-5% from yesterday" state="Success"/>
+                    <Button id="cardBtn3" 
+                        text="View Details" 
+                        type="Transparent" 
+                        press="onCardPress"
+                        width="100%"
+                        class="sapUiTinyMarginTop">
+                        <customData>
+                            <core:CustomData key="cardType" value="discrepancies" />
+                        </customData>
+                    </Button>
+                </VBox>
+            </f:content>
+        </f:Card>
+    </VBox>
+                                               
+</HBox>
 
                             <!-- Recent Activity -->
-                            <Panel id="_IDGenPanel1" headerText="Recent Activity" class="sapUiResponsiveMargin">
+                            <Panel id="_IDGenPanel1" headerText="Recent Activity" class="sapUiSmallMargin">
                                 <List id="_IDGenList" items="{/recentActivity}">
                                     <StandardListItem id="_IDGenStandardListItem"
                                         title="{action}"
@@ -127,16 +247,22 @@
 
                     <!-- RECONCILIATION TAB -->
                     <IconTabFilter id="reconTab" icon="sap-icon://receipt" text="Reconciliation" key="recon">
-                        <Panel id="_IDGenPanel2" headerText="Reconciliation">
+                        <Panel id="_IDGenPanel2" headerText="Reconciliation - {/currentFilter}">
                             <headerToolbar>
                                 <OverflowToolbar id="_IDGenOverflowToolbar">
                                     <Title id="_IDGenTitle" text="Reconciliation"/>
                                     <ToolbarSpacer id="_IDGenToolbarSpacer1"/>
                                     <SearchField id="_IDGenSearchField" width="300px" search="onSearchPOS"/>
-                                    <Button id="_IDGenButton4" icon="sap-icon://filter" press="onOpenFilter"/>
+                                    <Button id="clearFilterBtn" 
+                                        text="Clear Filters" 
+                                        icon="sap-icon://clear-filter" 
+                                        press="onClearFilters"
+                                        visible="{= ${/currentFilter} !== 'all' }"/>
+                                    <Button id="_IDGenButton4" text="Export Report" icon="sap-icon://download" press="onExportReport"/>
                                     <Button id="_IDGenButton5" text="Auto-Match" type="Emphasized" icon="sap-icon://play" press="onAutoMatch"/>
                                 </OverflowToolbar>
                             </headerToolbar>
+                            
                             <content>
                                 <Table
                                     id="posTable"
@@ -202,27 +328,26 @@
                     </IconTabFilter>
 
                      <!-- RULES ENGINE TAB -->
-                    <IconTabFilter id="rulesTab" icon="sap-icon://settings" text="Rules Engine   " key="rules">
+                    <IconTabFilter id="rulesTab" icon="sap-icon://settings" text="Rules Engine" key="rules">
                         <Panel id="_IDGenPanel6" headerText="Auto-Match Rules Configuration">
                             <headerToolbar>
                                 <OverflowToolbar id="_IDGenOverflowToolbar2">
                                     <Title id="_IDGenTitle2" text="Auto-Match Rules Configuration"/>
                                     <ToolbarSpacer id="_IDGenToolbarSpacer4"/>
                                     <Button id="_IDGenButton12" text="Add New Rule" icon="sap-icon://add" type="Emphasized" press="onAddRule"/>
+                                    <Button id="_IDGenButton19" text="Edit Rule" icon="sap-icon://edit" type="Emphasized" press="onEditRule"/>
                                     <Button id="_IDGenButton13" text="Test Selected Rules" icon="sap-icon://play" press="onTestRules" enabled="{= ${/selectedRulesCount} > 0 }"/>
                                     <Button id="_IDGenButton14" text="Delete Selected" icon="sap-icon://delete" type="Reject" press="onDeleteSelectedRules" enabled="{= ${/selectedRulesCount} > 0 }"/>
                                 </OverflowToolbar>
                             </headerToolbar>
                             <content>
+                            
                                 <Table 
                                     id="rulesTable" 
                                     items="{/rules}"
                                     mode="MultiSelect"
                                     selectionChange="onRuleSelectionChange">
                                     <columns>
-                                        <Column id="_IDGenColumn16" width="3em">
-                                            <Text id="_IDGenText25" text=""/>
-                                        </Column>
                                         <Column id="_IDGenColumn17">
                                             <Text id="_IDGenText26" text="Rule Name"/>
                                         </Column>
@@ -235,14 +360,11 @@
                                         <Column id="_IDGenColumn20" hAlign="Center" width="8em">
                                             <Text id="_IDGenText29" text="Status"/>
                                         </Column>
-                                        <Column id="_IDGenColumn21" hAlign="Center" width="10em">
-                                            <Text id="_IDGenText30" text="Actions"/>
-                                        </Column>
+                                        
                                     </columns>
                                     <items>
                                         <ColumnListItem id="_IDGenColumnListItem3" type="Active">
                                             <cells>
-                                                <CheckBox id="_IDGenCheckBox" selected="{selected}"/>
                                                 <VBox id="_IDGenVBox5">
                                                     <Title id="_IDGenTitle3" text="{ruleName}" level="H5"/>
                                                 </VBox>
@@ -253,28 +375,19 @@
                                                     customTextOn="Active" 
                                                     customTextOff="Inactive"
                                                     change="onRuleToggle"/>
-                                                <HBox id="_IDGenHBox">
-                                                    <Button id="_IDGenButton15" icon="sap-icon://edit" type="Transparent" press="onEditRule" tooltip="Edit Rule"/>
-                                                    <Button id="_IDGenButton16" icon="sap-icon://delete" type="Transparent" press="onDeleteRule" tooltip="Delete Rule"/>
-                                                    <Button id="_IDGenButton17" icon="sap-icon://play" type="Transparent" press="onTestSingleRule" tooltip="Test This Rule"/>
-                                                </HBox>
+                                                
                                             </cells>
                                         </ColumnListItem>
                                     </items>
                                 </Table>
+                                
+                                
                             </content>
                         </Panel>
                     </IconTabFilter>
                 </items>
             </IconTabBar>
         </content>
-
-        <footer>
-            <OverflowToolbar id="_IDGenOverflowToolbar3">
-                <ToolbarSpacer id="_IDGenToolbarSpacer5"/>
-                <Text id="_IDGenText33" text="Last sync: 2 mins ago"/>
-                <Button id="_IDGenButton18" icon="sap-icon://refresh" press="onRefresh"/>
-            </OverflowToolbar>
-        </footer>
+        
     </Page>
 </mvc:View>
