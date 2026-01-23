@@ -35,7 +35,7 @@ sap.ui.define([
                         discAmount: "-10.01",
                         nettAmount: "12448.88",
                         settlement: "12053.41",
-                        variance: "0",
+                        variance: "N/A",
                         status: "Matched"
             },
             {
@@ -49,7 +49,7 @@ sap.ui.define([
                         discAmount: "-5.01",
                         nettAmount: "25314.15",
                         settlement: "24502.22",
-                        variance: "0",
+                        variance: "N/A",
                         status: "Matched"
                     },
                     {
@@ -86,12 +86,12 @@ sap.ui.define([
                         transactionId: "172839112",
                         merchantId: "1250104734",
                         paymentMethod: "Credit Card",
-                        grossAmount: "1324.42",
-                        mdrRate: "3.15%",
-                        discAmount: "-13.01",
-                        nettAmount: "1311.41",
+                        grossAmount: "00.00",
+                        mdrRate: "0.00%",
+                        discAmount: "0.00",
+                        nettAmount: "00.00",
                         settlement: "1282.49",
-                        variance: "0",
+                        variance: "N/A",
                         status: "Pending POS"
                     },
                     {
@@ -105,7 +105,7 @@ sap.ui.define([
                         discAmount: "-8.01",
                         nettAmount: "2445.77",
                         settlement: "00.00",
-                        variance: "2374.2",
+                        variance: "N/A",
                         status: "Pending Stmt"
                     }
                 ],
@@ -212,60 +212,61 @@ sap.ui.define([
             // NEW: Initial data load
             this.loadDashboardData();
         },
+        /*
+        ListReportFragment OnClick handler
+        OnClickHandler: function () {
+            
+             var ExcepRpt = [{
+                 TransactionID: "",
+                 Date: "00000000",
+                 Product: "",
+                 NetAmount: "",
+                 Settlement: "",
+                 Variance: "",
+                 Status: ""
+             }];
+             var ExcepObj= {
+                 TransactionID: "111212",
+                 Date: "20250101",
+                 Product: "",
+                 NetAmount: "",
+                 Settlement: "",
+                 Variance: "",
+                 Status: ""
+             };
+            
+             ExcepRpt[0].TransactionID = "11111";
+             ExcepRpt[0].Date = "00000000";
+             ExcepRpt[0].Product = "";
+             ExcepRpt[0].NetAmount = "";
+             ExcepRpt[0].Settlement = "";
+             ExcepRpt[0].Variance = "";
+             ExcepRpt[0].Status = "";
+             ExcepRpt.push(ExcepObj);
+            
+            
+             var oModel = new JSONModel();
+             oModel.setData({listitem:ExcepRpt});
+             this.getView().setModel(oModel, "transactions");
 
-        // ListReportFragment OnClick handler
-        // OnClickHandler: function () {
-            
-        //     var ExcepRpt = [{
-        //         TransactionID: "",
-        //         Date: "00000000",
-        //         Product: "",
-        //         NetAmount: "",
-        //         Settlement: "",
-        //         Variance: "",
-        //         Status: ""
-        //     }];
-        //     var ExcepObj= {
-        //         TransactionID: "111212",
-        //         Date: "20250101",
-        //         Product: "",
-        //         NetAmount: "",
-        //         Settlement: "",
-        //         Variance: "",
-        //         Status: ""
-        //     };
-            
-        //     ExcepRpt[0].TransactionID = "11111";
-        //     ExcepRpt[0].Date = "00000000";
-        //     ExcepRpt[0].Product = "";
-        //     ExcepRpt[0].NetAmount = "";
-        //     ExcepRpt[0].Settlement = "";
-        //     ExcepRpt[0].Variance = "";
-        //     ExcepRpt[0].Status = "";
-        //     ExcepRpt.push(ExcepObj);
-            
-            
-        //     var oModel = new JSONModel();
-        //     oModel.setData({listitem:ExcepRpt});
-        //     this.getView().setModel(oModel, "transactions");
-
-        //     if (!this.customDialog) {
-        //         Fragment.load({
-        //             name: "project1.ext.Card.List",
-        //             controller: this
-        //         }).then(function (customDialog) {
-        //             this.customDialog = customDialog;
-        //             this.customDialog.setModel(this.getView().getModel("transactions"));
-        //             this.getView().addDependent(this.customDialog);
-        //             this.customDialog.open();
-        //         }.bind(this));
-        //     }
-        // },
-        // onCloseDialog: function () {
-        //     if (this._oDialog) {
-        //         this._oDialog.close();
-        //     }
-        // },
+             if (!this.customDialog) {
+                 Fragment.load({
+                     name: "project1.ext.Card.List",
+                     controller: this
+                 }).then(function (customDialog) {
+                     this.customDialog = customDialog;
+                     this.customDialog.setModel(this.getView().getModel("transactions"));
+                     this.getView().addDependent(this.customDialog);
+                     this.customDialog.open();
+                 }.bind(this));
+             }
+         },
+         onCloseDialog: function () {
+             if (this._oDialog) {
+                 this._oDialog.close();
+             }
+         },
+        */
 
         // ==================== NEW: DATE FILTER FUNCTIONS ====================
         
@@ -558,7 +559,7 @@ onViewPOSTransaction: function() {
     
     // CHECK STATUS FIRST - if Pending POS, show empty state
     if (oTransaction.status === "Pending POS") {
-        // Set empty merchant statement data
+        // Set empty POS Transaction data
         oModel.setProperty("/POSTransactionList", []);
         
         // Create and open POS Transaction dialog with empty data
@@ -920,6 +921,7 @@ onAcceptAndMatch: function() {
     var oModel = this.getView().getModel();
     var oTransaction = oModel.getProperty("/selectedTransaction");
     
+    /* dont have accept and match button
     MessageBox.confirm(
         "Are you sure you want to accept and match this transaction?",
         {
@@ -941,6 +943,7 @@ onAcceptAndMatch: function() {
             }.bind(this)
         }
     );
+    */
 },
 
 onFlagForReview: function() {
@@ -961,7 +964,7 @@ onFlagForReview: function() {
                         oModel.setProperty("/transactions", aTransactions);
                     }
                     
-                    MessageToast.show("Transaction flagged for review");
+                    MessageToast.show("The workflow has been triggered for review");
                     this.onCloseTransactionDialog();
                 }
             }.bind(this)
@@ -1066,9 +1069,9 @@ onFlagForReview: function() {
                     break;
                     
                 case "discrepancies":
-                    // Show only discrepancies/unmatched data
+                    // Show only discrepancies/unmatched/ pending data
                     oTabBar.setSelectedKey("recon");
-                    this.filterReconciliationData("discrepancies", sDateFrom, sDateTo);
+                    this.filterReconciliationData("unmatched","Pending POS", "Pending Smtmt", sDateFrom, sDateTo);
                     MessageToast.show("Showing discrepancy data");
                     break; 
                 
