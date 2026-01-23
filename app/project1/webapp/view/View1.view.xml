@@ -217,7 +217,7 @@
                     <Button id="cardBtn3" 
                         text="View Details" 
                         type="Transparent" 
-                        press=".OnClickHandler"
+                        press="OnCardPress"
                         width="100%"
                         class="sapUiTinyMarginTop">
                         <customData>

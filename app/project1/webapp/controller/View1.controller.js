@@ -1,14 +1,13 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/Fragment",
-    "sap/ui/model/json/JSONModel",,
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
     "sap/m/MessageBox",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/ui/model/Sorter"
-], function (Controller, Fragment, JSONModel, JSONModel, MessageToast, MessageBox, Filter, FilterOperator, Sorter) {
+], function (Controller, Fragment, JSONModel, MessageToast, MessageBox, Filter, FilterOperator, Sorter) {
     "use strict";
 
     return Controller.extend("project1.controller.View1", {
@@ -215,58 +214,58 @@ sap.ui.define([
         },
 
         // ListReportFragment OnClick handler
-        OnClickHandler: function () {
+        // OnClickHandler: function () {
             
-            var ExcepRpt = [{
-                TransactionID: "",
-                Date: "00000000",
-                Product: "",
-                NetAmount: "",
-                Settlement: "",
-                Variance: "",
-                Status: ""
-            }];
-            var ExcepObj= {
-                TransactionID: "111212",
-                Date: "20250101",
-                Product: "",
-                NetAmount: "",
-                Settlement: "",
-                Variance: "",
-                Status: ""
-            };
+        //     var ExcepRpt = [{
+        //         TransactionID: "",
+        //         Date: "00000000",
+        //         Product: "",
+        //         NetAmount: "",
+        //         Settlement: "",
+        //         Variance: "",
+        //         Status: ""
+        //     }];
+        //     var ExcepObj= {
+        //         TransactionID: "111212",
+        //         Date: "20250101",
+        //         Product: "",
+        //         NetAmount: "",
+        //         Settlement: "",
+        //         Variance: "",
+        //         Status: ""
+        //     };
             
-            ExcepRpt[0].TransactionID = "11111";
-            ExcepRpt[0].Date = "00000000";
-            ExcepRpt[0].Product = "";
-            ExcepRpt[0].NetAmount = "";
-            ExcepRpt[0].Settlement = "";
-            ExcepRpt[0].Variance = "";
-            ExcepRpt[0].Status = "";
-            ExcepRpt.push(ExcepObj);
+        //     ExcepRpt[0].TransactionID = "11111";
+        //     ExcepRpt[0].Date = "00000000";
+        //     ExcepRpt[0].Product = "";
+        //     ExcepRpt[0].NetAmount = "";
+        //     ExcepRpt[0].Settlement = "";
+        //     ExcepRpt[0].Variance = "";
+        //     ExcepRpt[0].Status = "";
+        //     ExcepRpt.push(ExcepObj);
             
             
-            var oModel = new JSONModel();
-            oModel.setData({listitem:ExcepRpt});
-            this.getView().setModel(oModel, "transactions");
+        //     var oModel = new JSONModel();
+        //     oModel.setData({listitem:ExcepRpt});
+        //     this.getView().setModel(oModel, "transactions");
 
-            if (!this.customDialog) {
-                Fragment.load({
-                    name: "project1.ext.Card.List",
-                    controller: this
-                }).then(function (customDialog) {
-                    this.customDialog = customDialog;
-                    this.customDialog.setModel(this.getView().getModel("transactions"));
-                    this.getView().addDependent(this.customDialog);
-                    this.customDialog.open();
-                }.bind(this));
-            }
-        },
-        onCloseDialog: function () {
-            if (this._oDialog) {
-                this._oDialog.close();
-            }
-        },
+        //     if (!this.customDialog) {
+        //         Fragment.load({
+        //             name: "project1.ext.Card.List",
+        //             controller: this
+        //         }).then(function (customDialog) {
+        //             this.customDialog = customDialog;
+        //             this.customDialog.setModel(this.getView().getModel("transactions"));
+        //             this.getView().addDependent(this.customDialog);
+        //             this.customDialog.open();
+        //         }.bind(this));
+        //     }
+        // },
+        // onCloseDialog: function () {
+        //     if (this._oDialog) {
+        //         this._oDialog.close();
+        //     }
+        // },
 
         // ==================== NEW: DATE FILTER FUNCTIONS ====================
         
