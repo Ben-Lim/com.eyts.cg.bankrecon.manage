@@ -1,0 +1,133 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    
+    <Dialog id="_IDGenDialog1"
+        title="Transaction Details"
+        contentWidth="900px"
+        contentHeight="650px"
+        resizable="true"
+        draggable="true">
+        
+        <content>
+            <VBox id="_IDGenVBox" class="sapUiSmallMargin">
+                
+                <!-- Transaction Information -->
+                <Title id="_IDGenTitle1" text="Transaction Information" class="sapUiSmallMarginBottom"/>
+                <f:SimpleForm id="_IDGenSimpleForm"
+                    editable="false"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="4"
+                    labelSpanL="4"
+                    labelSpanM="4"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="0"
+                    emptySpanL="0"
+                    emptySpanM="0"
+                    emptySpanS="0"
+                    columnsXL="2"
+                    columnsL="2"
+                    columnsM="1"
+                    singleContainerFullSize="false">
+                    
+                    <f:content>
+                        <Label id="_IDGenLabel" text="Transaction ID"/>
+                        <Text id="_IDGenText" text="{/selectedTransaction/transactionId}"/>
+                        
+                        <Label id="_IDGenLabel1" text="Transaction Date"/>
+                        <Text id="_IDGenText1" text="{/selectedTransaction/transDate}"/>
+                        
+                        <Label id="_IDGenLabel2" text="Store"/>
+                        <Text id="_IDGenText10" text="{/selectedTransaction/store}"/>
+                        
+                        <Label id="_IDGenLabel3" text="Merchant ID"/>
+                        <Text id="_IDGenText11" text="{/selectedTransaction/merchantId}"/>
+                    </f:content>
+                </f:SimpleForm>
+                
+                <!-- Financial Breakdown -->
+                <Title id="_IDGenTitle4" text="Financial Breakdown" class="sapUiMediumMarginTop sapUiSmallMarginBottom"/>
+                <Table id="_IDGenTable" class="sapUiSmallMarginBottom">
+                    <columns>
+                        <Column id="_IDGenColumn13" width="12%"><Text id="_IDGenText12" text="Gross Amount"/></Column>
+                        <Column id="_IDGenColumn14" width="12%"><Text id="_IDGenText23" text="MDR Rate"/></Column>
+                        <Column id="_IDGenColumn15" width="15%"><Text id="_IDGenText24" text="Discount Amount"/></Column>
+                        <Column id="_IDGenColumn16" width="13%"><Text id="_IDGenText25" text="Nett Amount"/></Column>
+                        <Column id="_IDGenColumn21" width="13%"><Text id="_IDGenText30" text="Settlement"/></Column>
+                        <Column id="_IDGenColumn22" width="12%"><Text id="_IDGenText33" text="Variance"/></Column>
+                        <Column id="_IDGenColumn23" width="12%"><Text id="_IDGenText34" text="Status"/></Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem id="_IDGenColumnListItem1">
+                            <cells>
+                                <Text id="_IDGenText35" text="{/selectedTransaction/grossAmount}"/>
+                                <Text id="_IDGenText36" text="{/selectedTransaction/mdrRate}"/>
+                                <Text id="_IDGenText37" text="{/selectedTransaction/discAmount}"/>
+                                <Text id="_IDGenText38" text="{/selectedTransaction/nettAmount}"/>
+                                <Text id="_IDGenText39" text="{/selectedTransaction/settlement}"/>
+                                <ObjectStatus id="_IDGenObjectStatus"
+                                    text="{/selectedTransaction/variance}"
+                                    state="{= ${/selectedTransaction/variance} === '0' ? 'None' : 'Warning' }"/>
+                                <ObjectStatus id="_IDGenObjectStatus1"
+                                    text="{/selectedTransaction/status}"
+                                    state="{= ${/selectedTransaction/status} === 'Matched' ? 'Success' : 'Warning' }"/>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                
+                <!-- Status Message -->
+                <MessageStrip id="_IDGenMessageStrip"
+                    text="{= ${/selectedTransaction/status} === 'Matched' ? 'No Variance Detected - Settlement amount matched expected net amount.' : 
+                            ${/selectedTransaction/status} === 'Unmatched' ? 'Variance detected - Settlement amount differs from expected net amount. This may be due to payment processor fees (' + ${/selectedTransaction/variance} + ').' :
+                            'Variance detected - Settlement amount differs from expected net amount. This may be due to pending payment processing to merchant.' }"
+                    type="{= ${/selectedTransaction/status} === 'Matched' ? 'Success' : 'Warning' }"
+                    showIcon="true"
+                    class="sapUiSmallMarginTop">
+                </MessageStrip>
+                
+                <!-- View Transaction Lists Buttons -->
+                <VBox id="_IDGenVBox1" class="sapUiMediumMarginTop">
+                    <Title id="_IDGenTitle5" text="View Transaction Lists" class="sapUiSmallMarginBottom"/>
+                    <HBox id="_IDGenHBox" class="sapUiSmallMarginTop">
+                        <Button id="_IDGenButton"
+                            text="POS Transaction"
+                            icon="sap-icon://sales-order"
+                            type="Emphasized"
+                            press=".onViewPOSTransaction"
+                            class="sapUiTinyMarginEnd"/>
+                        <Button id="_IDGenButton1"
+                            text="Merchant Statement"
+                            icon="sap-icon://account"
+                            type="Emphasized"
+                            press=".onViewMerchantStatement"/>
+                    </HBox>
+                </VBox>
+                
+            </VBox>
+        </content>
+        
+        <beginButton>
+            <Button id="_IDGenButton2"
+                text="Accept &amp; Match"
+                type="Accept"
+                icon="sap-icon://accept"
+                press=".onAcceptAndMatch"/>
+        </beginButton>
+        
+        <buttons>
+            <Button id="_IDGenButton3"
+                text="Flag for Review"
+                icon="sap-icon://flag"
+                type="Reject"
+                press=".onFlagForReview"/>
+            <Button id="_IDGenButton7"
+                text="Close"
+                press=".onCloseTransactionDialog"/>
+        </buttons>
+        
+    </Dialog>
+    
+</core:FragmentDefinition>
