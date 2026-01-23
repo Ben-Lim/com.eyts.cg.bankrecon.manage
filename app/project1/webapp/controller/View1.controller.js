@@ -69,20 +69,6 @@ sap.ui.define([
                     },
                     {
                         transDate: "2026-01-21",
-                        store: "UR BY SWITCH @ PLAZA KLTS",
-                        transactionId: "172839112",
-                        merchantId: "1250104734",
-                        paymentMethod: "Credit Card",
-                        grossAmount: "1324.42",
-                        mdrRate: "3.15%",
-                        discAmount: "-13.01",
-                        nettAmount: "1311.41",
-                        settlement: "1282.49",
-                        variance: "0",
-                        status: "Matched"
-                    },
-                    {
-                        transDate: "2026-01-21",
                         store: "URBAN REPUBLIC @ KL EAST",
                         transactionId: "299186384",
                         merchantId: "1250104882",
@@ -96,6 +82,20 @@ sap.ui.define([
                         status: "Unmatched"
                     },
                     {
+                        transDate: "2026-01-21",
+                        store: "UR BY SWITCH @ PLAZA KLTS",
+                        transactionId: "172839112",
+                        merchantId: "1250104734",
+                        paymentMethod: "Credit Card",
+                        grossAmount: "1324.42",
+                        mdrRate: "3.15%",
+                        discAmount: "-13.01",
+                        nettAmount: "1311.41",
+                        settlement: "1282.49",
+                        variance: "0",
+                        status: "Pending POS"
+                    },
+                    {
                         transDate: "2026-01-20",
                         store: "URBAN REPUBLIC @ PAVILION",
                         transactionId: "288094632",
@@ -107,7 +107,7 @@ sap.ui.define([
                         nettAmount: "2445.77",
                         settlement: "00.00",
                         variance: "2374.2",
-                        status: "Pending"
+                        status: "Pending Stmt"
                     }
                 ],
                 
@@ -557,6 +557,30 @@ onViewPOSTransaction: function() {
     var oModel = this.getView().getModel();
     var oTransaction = oModel.getProperty("/selectedTransaction");
     
+    // CHECK STATUS FIRST - if Pending POS, show empty state
+    if (oTransaction.status === "Pending POS") {
+        // Set empty merchant statement data
+        oModel.setProperty("/POSTransactionList", []);
+        
+        // Create and open POS Transaction dialog with empty data
+        if (!this._oPOSDialog) {
+            this._oPOSDialog = sap.ui.xmlfragment(
+                "project1.view.POSTransactionList",
+                this
+            );
+            this.getView().addDependent(this._oPOSDialog);
+        }
+        
+        this._oPOSDialog.open();
+        
+        // Optionally show a message
+        MessageToast.show("No POS Transaction data available for pending transactions");
+        return; // Exit the function early
+    }
+    
+    // EXISTING CODE - Only execute for non-Pending transactions
+
+
     // Mock POS transaction data
     var aPOSTransactions = [
         {
@@ -651,8 +675,8 @@ onViewMerchantStatement: function() {
     var oModel = this.getView().getModel();
     var oTransaction = oModel.getProperty("/selectedTransaction");
     
-    // CHECK STATUS FIRST - if Pending, show empty state
-    if (oTransaction.status === "Pending") {
+    // CHECK STATUS FIRST - if Pending Stmt, show empty state
+    if (oTransaction.status === "Pending Stmt") {
         // Set empty merchant statement data
         oModel.setProperty("/merchantStatementsList", []);
         
