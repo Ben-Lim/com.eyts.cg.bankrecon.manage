@@ -1,0 +1,61 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"> <!--xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">-->
+	<Dialog id="ExcepRptdialog" title="List" contentWidth="100%" contentHeight="100%">
+		<Table id="idExcepRptTable" sticky="HeaderToolbar,ColumnHeaders" inset="false" items="{transactions>/listitem}"
+			class="sapFDynamicPageAlignContent" width="auto">
+		    <columns>
+				<Column id="_IDExcepRptColumn1" width="12em">
+                    <Text id="_IDExcepRptText1" text="Transaction ID"/>
+                </Column>
+                <Column id="_IDExcepRptColumn2" width="8em">
+                    <Text id="_IDExcepRptText2" text="Date"/>
+                </Column>
+                <Column id="_IDExcepRptColumn3" minScreenWidth="Tablet" demandPopin="true">
+                    <Text id="_IDExcepRptText3" text="Product"/>
+                </Column>
+                <Column id="_IDExcepRptColumn4" hAlign="End" minScreenWidth="Tablet" demandPopin="true">
+                    <Text id="_IDExcepRptText4" text="Net Amount"/>
+                </Column>
+                <Column id="_IDExcepRptColumn5" hAlign="End">
+                    <Text id="_IDExcepRptText5" text="Settlement"/>
+                </Column>
+                <Column id="_IDExcepRptColumn6" hAlign="End">
+                    <Text id="_IDExcepRptText6" text="Variance"/>
+                </Column>
+                <Column id="_IDExcepRptColumn7" hAlign="Center" width="8em">
+                    <Text id="_IDExcepRptText7" text="Status"/>
+                </Column>
+                <Column id="_IDExcepRptColumn8" hAlign="Center" width="8em">
+                    <Text id="_IDExcepRptText8" text="Action"/>
+                </Column>
+			</columns>
+			 <items>
+				<ColumnListItem id="_IDExcepRptListItem" type="Active" press="myOnClickHandler">
+                                            <cells>
+                                                <ObjectIdentifier id="_IDExcepRptObjectIdentifier" title="{transactions>TransactionID}"/>
+                                                <Text id="_IDExcepRptText9" text="{date}"/>
+                                                <VBox id="_IDExcepRptVBox1">
+                                                    <Text id="_IDExcepRptText10" text="{product}"/>
+                                                    <Text id="_IDExcepRptText11" text="{sku}" class="sapUiTinyText"/>
+                                                </VBox>
+                                                <ObjectNumber id="_IDExcepRptObjectNumber1"
+                                                    number="{netAmount}"
+                                                    unit=""/>
+                                                <ObjectNumber id="_IDExcepRptObjectNumber2"
+                                                    number="{settlement}"
+                                                    unit=""/>
+                                                <ObjectNumber id="_IDExcepRptObjectNumber3"
+                                                    number="{variance}"
+                                                    unit=""
+                                                    state="{= ${variance} > 50 ? 'Error' : ${variance} > 0 ? 'Warning' : 'Success' }"/>
+                                                <ObjectStatus id="_IDExcepRptObjectStatus1"
+                                                    text="{status}"
+                                                    state="{= ${status} === 'Matched' ? 'Success' : ${status} === 'Pending' ? 'Warning' : 'Error' }"/>
+                                            </cells>
+                                        </ColumnListItem>
+			</items>
+		</Table>
+		<buttons>
+			<Button id="Close" text="Close" press=".onCloseDialog" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
