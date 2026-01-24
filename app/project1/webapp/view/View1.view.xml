@@ -345,6 +345,7 @@
                             </content>
                         </Panel>
                     </IconTabFilter>
+                    
 
                      <!-- RULES ENGINE TAB -->
                     <IconTabFilter id="rulesTab" icon="sap-icon://settings" text="Rules Engine" key="rules">

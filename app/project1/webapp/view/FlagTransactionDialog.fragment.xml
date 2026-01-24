@@ -1,0 +1,55 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    
+    <Dialog id="_IDGenDialog4"
+        title="Flag Transaction"
+        contentWidth="500px"
+        type="Message"
+        icon="sap-icon://alert">
+        
+        <content>
+            <VBox id="_IDGenVBox7" class="sapUiSmallMargin">
+                <Text id="_IDGenText106" text="Flag this transaction for manual review?" class="sapUiSmallMarginBottom"/>
+                
+                <!-- Reviewer Selection -->
+                <Label id="_IDGenLabel4" text="Select Reviewer" required="true"/>
+                <Select id="_IDGenSelect"
+                    width="100%"
+                    selectedKey="{/selectedReviewer}">
+                    <items>
+                        <core:Item id="_IDGenItem" key="" text="-- Select a reviewer --"/>
+                        <core:Item id="_IDGenItem1" key="Sarah Mitchell" text="Sarah Mitchell"/>
+                        <core:Item id="_IDGenItem2" key="James Chen" text="James Chen"/>
+                        <core:Item id="_IDGenItem3" key="Maria Rodriguez" text="Maria Rodriguez"/>
+                        <core:Item id="_IDGenItem4" key="David Thompson" text="David Thompson"/>
+                    </items>
+                </Select>
+                
+                <!-- Comment Box -->
+                <Label id="_IDGenLabel5" text="Comment" required="true" class="sapUiSmallMarginTop"/>
+                <TextArea id="_IDGenTextArea"
+                    value="{/flagComment}"
+                    rows="5"
+                    width="100%"
+                    maxLength="500"
+                    placeholder="Enter reason for flagging this transaction..."
+                    liveChange="onFlagCommentChange"/>
+                <Text id="_IDGenText107" text="{/flagCharCount} / 500 characters" class="sapUiTinyMarginTop"/>
+            </VBox>
+        </content>
+        
+        <beginButton>
+            <Button id="_IDGenButton10"
+                text="Submit"
+                type="Emphasized"
+                press="onSubmitFlag"/>
+        </beginButton>
+        
+        <endButton>
+            <Button id="_IDGenButton11"
+                text="Cancel"
+                press="onCancelFlag"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
