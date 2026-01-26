@@ -1,41 +1,88 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"> <!--xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">-->
 	<Dialog id="ExcepRptdialog" title="List" contentWidth="100%" contentHeight="100%">
-		<Table id="idExcepRptTable" sticky="HeaderToolbar,ColumnHeaders" inset="false" items="{transactions>/listitem}"
+		<Table id="idExcepRptTable" sticky="HeaderToolbar,ColumnHeaders" inset="false" items="{exceprpt>/listitem}"
 			class="sapFDynamicPageAlignContent" width="auto">
 		    <columns>
-				<Column id="_IDExcepRptColumn1" width="12em">
-                    <Text id="_IDExcepRptText1" text="Transaction ID"/>
-                </Column>
-                <Column id="_IDExcepRptColumn2" width="8em">
-                    <Text id="_IDExcepRptText2" text="Date"/>
-                </Column>
-                <Column id="_IDExcepRptColumn3" minScreenWidth="Tablet" demandPopin="true">
-                    <Text id="_IDExcepRptText3" text="Product"/>
-                </Column>
-                <Column id="_IDExcepRptColumn4" hAlign="End" minScreenWidth="Tablet" demandPopin="true">
-                    <Text id="_IDExcepRptText4" text="Net Amount"/>
-                </Column>
-                <Column id="_IDExcepRptColumn5" hAlign="End">
-                    <Text id="_IDExcepRptText5" text="Settlement"/>
-                </Column>
-                <Column id="_IDExcepRptColumn6" hAlign="End">
-                    <Text id="_IDExcepRptText6" text="Variance"/>
-                </Column>
-                <Column id="_IDExcepRptColumn7" hAlign="Center" width="8em">
-                    <Text id="_IDExcepRptText7" text="Status"/>
-                </Column>
-                <Column id="_IDExcepRptColumn8" hAlign="Center" width="8em">
-                    <Text id="_IDExcepRptText8" text="Action"/>
-                </Column>
+				<Column id="_IDExcepRptColumn1" width="12em"><Text id="_IDExcepRptText1" text="Merchant ID"/></Column>
+                <Column id="_IDExcepRptColumn2" width="12em"><Text id="_IDExcepRptText2" text="Merchant Name"/></Column>
+                <Column id="_IDExcepRptColumn3" width="12em"><Text id="_IDExcepRptText3" text="Transaction ID"/></Column>
+                <Column id="_IDExcepRptColumn4" width="12em"><Text id="_IDExcepRptText4" text="Type"/></Column>
+                <Column id="_IDExcepRptColumn5" width="12em"><Text id="_IDExcepRptText5" text="Reference No."/></Column>
+                <Column id="_IDExcepRptColumn6" width="12em"><Text id="_IDExcepRptText6" text="SKU"/></Column>
+                <Column id="_IDExcepRptColumn7" width="12em"><Text id="_IDExcepRptText7" text="Product"/></Column>
+                <Column id="_IDExcepRptColumn8" width="12em"><Text id="_IDExcepRptText8" text="Location"/></Column>
+                <Column id="_IDExcepRptColumn9" width="12em"><Text id="_IDExcepRptText9" text="Sales Date"/></Column>
+                <Column id="_IDExcepRptColumn10" width="12em"><Text id="_IDExcepRptText10" text="Status"/></Column>
+                <Column id="_IDExcepRptColumn11" width="12em"><Text id="_IDExcepRptText11" text="Info"/></Column>
+                <Column id="_IDExcepRptColumn12" width="12em"><Text id="_IDExcepRptText12" text="Payment Method"/></Column>
+                <Column id="_IDExcepRptColumn13" width="12em"><Text id="_IDExcepRptText13" text="Quantity"/></Column>
+                <Column id="_IDExcepRptColumn14" width="12em"><Text id="_IDExcepRptText14" text="Gross Sales"/></Column>
+                <Column id="_IDExcepRptColumn15" width="12em"><Text id="_IDExcepRptText15" text="Discount"/></Column>
+                <Column id="_IDExcepRptColumn16" width="12em"><Text id="_IDExcepRptText16" text="Net Amount"/></Column>
+                <Column id="_IDExcepRptColumn17" width="12em"><Text id="_IDExcepRptText17" text="EDC Terminal No."/></Column>
+                <Column id="_IDExcepRptColumn18" width="12em"><Text id="_IDExcepRptText18" text="Settlement Date"/></Column>
+                <Column id="_IDExcepRptColumn19" width="12em"><Text id="_IDExcepRptText19" text="EDC Batch No."/></Column>
+                <Column id="_IDExcepRptColumn20" width="12em"><Text id="_IDExcepRptText20" text="Statement Batch No."/></Column>
+                <Column id="_IDExcepRptColumn21" width="12em"><Text id="_IDExcepRptText21" text="Card No./Trans ID"/></Column>
+                <Column id="_IDExcepRptColumn22" width="12em"><Text id="_IDExcepRptText22" text="Transaction Date"/></Column>
+                <Column id="_IDExcepRptColumn23" width="12em"><Text id="_IDExcepRptText23" text="Transaction Time"/></Column>
+                <Column id="_IDExcepRptColumn24" width="12em"><Text id="_IDExcepRptText24" text="Approval Code"/></Column>
+                <Column id="_IDExcepRptColumn25" width="12em"><Text id="_IDExcepRptText25" text="Transaction Amount"/></Column>
+                <Column id="_IDExcepRptColumn26" width="12em"><Text id="_IDExcepRptText26" text="MDR Rate"/></Column>
+                <Column id="_IDExcepRptColumn27" width="12em"><Text id="_IDExcepRptText27" text="Discount Amount"/></Column>
+                <Column id="_IDExcepRptColumn28" width="12em"><Text id="_IDExcepRptText28" text="Nett Amount"/></Column>
+                <Column id="_IDExcepRptColumn29" width="12em"><Text id="_IDExcepRptText29" text="Card Brand"/></Column>
+                <Column id="_IDExcepRptColumn30" width="12em"><Text id="_IDExcepRptText30" text="Interchange Fee Code"/></Column>
+                <Column id="_IDExcepRptColumn31" width="12em"><Text id="_IDExcepRptText31" text="RPP ID"/></Column>
+                <Column id="_IDExcepRptColumn32" width="12em"><Text id="_IDExcepRptText32" text="Institution Name"/></Column>
+                <Column id="_IDExcepRptColumn33" width="12em"><Text id="_IDExcepRptText33" text="Account Type"/></Column>
+                <Column id="_IDExcepRptColumn34" width="12em"><Text id="_IDExcepRptText34" text="Name"/></Column>
+                <Column id="_IDExcepRptColumn35" width="12em"><Text id="_IDExcepRptText35" text="Merchant Transaction ID"/></Column>
 			</columns>
 			 <items>
-				<ColumnListItem id="_IDExcepRptListItem" type="Active" press="myOnClickHandler">
-                                            <cells>
-                                                <ObjectIdentifier id="_IDExcepRptObjectIdentifier" title="{transactions>TransactionID}"/>
-                                                <Text id="_IDExcepRptText9" text="{date}"/>
+				<ColumnListItem id="_IDExcepRptListItem" type="Active" press=".OnClickHandler">
+                    <cells>
+                            <Text id="_IDExcepRptListText1" text="{exceprpt>MerchantID}"/>
+                            <Text id="_IDExcepRptListText2" text="{exceprpt>MerchantName}"/>
+                            <Text id="_IDExcepRptListText3" text="{exceprpt>TransactionID}"/>
+                            <Text id="_IDExcepRptListText4" text="{exceprpt>Type}"/>
+                            <Text id="_IDExcepRptListText5" text="{exceprpt>RefNo}"/>
+                            <Text id="_IDExcepRptListText6" text="{exceprpt>SKU}"/>
+                            <Text id="_IDExcepRptListText7" text="{exceprpt>Product}"/>
+                            <Text id="_IDExcepRptListText8" text="{exceprpt>Location}"/>
+                            <Text id="_IDExcepRptListText9" text="{exceprpt>SalesDate}"/>
+                            <Text id="_IDExcepRptListText10" text="{exceprpt>Status}"/>
+                            <Text id="_IDExcepRptListText11" text="{exceprpt>Info}"/>
+                            <Text id="_IDExcepRptListText12" text="{exceprpt>PaymentMethod}"/>
+                            <Text id="_IDExcepRptListText13" text="{exceprpt>Quantity}"/>
+                            <Text id="_IDExcepRptListText14" text="{exceprpt>GrossSales}"/>
+                            <Text id="_IDExcepRptListText15" text="{exceprpt>Discount}"/>
+                            <Text id="_IDExcepRptListText16" text="{exceprpt>NetAmount}"/>
+                            <Text id="_IDExcepRptListText17" text="{exceprpt>EDCTerminalNo}"/>
+                            <Text id="_IDExcepRptListText18" text="{exceprpt>SettlementDate}"/>
+                            <Text id="_IDExcepRptListText19" text="{exceprpt>EDCBatchNo}"/>
+                            <Text id="_IDExcepRptListText20" text="{exceprpt>SettlementBatchNo}"/>
+                            <Text id="_IDExcepRptListText21" text="{exceprpt>CardNoTransID}"/>
+                            <Text id="_IDExcepRptListText22" text="{exceprpt>TransDate}"/>
+                            <Text id="_IDExcepRptListText23" text="{exceprpt>TransTime}"/>
+                            <Text id="_IDExcepRptListText24" text="{exceprpt>ApprovalCode}"/>
+                            <Text id="_IDExcepRptListText25" text="{exceprpt>TransAmount}"/>
+                            <Text id="_IDExcepRptListText26" text="{exceprpt>MDRRate}"/>
+                            <Text id="_IDExcepRptListText27" text="{exceprpt>DiscAmount}"/>
+                            <Text id="_IDExcepRptListText28" text="{exceprpt>NettAmount}"/>
+                            <Text id="_IDExcepRptListText29" text="{exceprpt>CardBrand}"/>
+                            <Text id="_IDExcepRptListText30" text="{exceprpt>InterchangeFeeCode}"/>
+                            <Text id="_IDExcepRptListText31" text="{exceprpt>RPPID}"/>
+                            <Text id="_IDExcepRptListText32" text="{exceprpt>InstitutionName}"/>
+                            <Text id="_IDExcepRptListText33" text="{exceprpt>AccountType}"/>
+                            <Text id="_IDExcepRptListText34" text="{exceprpt>Name}"/>
+                            <Text id="_IDExcepRptListText35" text="{exceprpt>MerchantTransactionID}"/>
+
+                                                <!-- <ObjectIdentifier id="_IDExcepRptObjectIdentifier" title="{exceprpt>TransactionID}"/>
+                                                <Text id="_IDExcepRptText36" text="{date}"/>
                                                 <VBox id="_IDExcepRptVBox1">
-                                                    <Text id="_IDExcepRptText10" text="{product}"/>
-                                                    <Text id="_IDExcepRptText11" text="{sku}" class="sapUiTinyText"/>
+                                                    <Text id="_IDExcepRptText37" text="{product}"/>
+                                                    <Text id="_IDExcepRptText38" text="{sku}" class="sapUiTinyText"/>
                                                 </VBox>
                                                 <ObjectNumber id="_IDExcepRptObjectNumber1"
                                                     number="{netAmount}"
@@ -49,9 +96,9 @@
                                                     state="{= ${variance} > 50 ? 'Error' : ${variance} > 0 ? 'Warning' : 'Success' }"/>
                                                 <ObjectStatus id="_IDExcepRptObjectStatus1"
                                                     text="{status}"
-                                                    state="{= ${status} === 'Matched' ? 'Success' : ${status} === 'Pending' ? 'Warning' : 'Error' }"/>
-                                            </cells>
-                                        </ColumnListItem>
+                                                    state="{= ${status} === 'Matched' ? 'Success' : ${status} === 'Pending' ? 'Warning' : 'Error' }"/> -->
+                    </cells>
+                </ColumnListItem>
 			</items>
 		</Table>
 		<buttons>

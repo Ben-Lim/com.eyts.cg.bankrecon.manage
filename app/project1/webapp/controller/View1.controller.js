@@ -12,6 +12,7 @@ sap.ui.define([
 
     return Controller.extend("project1.controller.View1", {
 
+
         onInit: function () {
             // Create model with mock data
             var oData = {
@@ -37,6 +38,7 @@ sap.ui.define([
                 transactions: [
                     {
                         transDate: "2026-01-22",
+                        transDate: "2026-01-22",
                         store: "SWITCH @ SUNWAY PYRAMID",
                         transactionId: "123456789",
                         merchantId: "1250103504",
@@ -48,6 +50,8 @@ sap.ui.define([
                         settlement: "12053.41",
                         variance: "N/A",
                         status: "Matched"
+                    },
+                    {
                     },
                     {
                         transDate: "2026-01-22",
@@ -121,8 +125,10 @@ sap.ui.define([
                     }
                 ],
 
+
                 // Current filter for reconciliation data
                 currentFilter: "all",
+
 
                 // Mock data for recent activity
                 recentActivity: [
@@ -168,6 +174,7 @@ sap.ui.define([
                     }
                 ],
 
+
                 // Mock data for rules
                 rules: [
                     {
@@ -212,73 +219,193 @@ sap.ui.define([
                     }
                 ],
 
+
                 // Counter for selected rules
                 selectedRulesCount: 0
             };
+
 
             // Set the model to the view
             var oModel = new JSONModel(oData);
             this.getView().setModel(oModel);
 
+
             // NEW: Initial data load
             this.loadDashboardData();
 
         },
-        /*
-        ListReportFragment OnClick handler
-        OnClickHandler: function () {
-            
-             var ExcepRpt = [{
-                 TransactionID: "",
-                 Date: "00000000",
-                 Product: "",
-                 NetAmount: "",
-                 Settlement: "",
-                 Variance: "",
-                 Status: ""
-             }];
-             var ExcepObj= {
-                 TransactionID: "111212",
-                 Date: "20250101",
-                 Product: "",
-                 NetAmount: "",
-                 Settlement: "",
-                 Variance: "",
-                 Status: ""
-             };
-            
-             ExcepRpt[0].TransactionID = "11111";
-             ExcepRpt[0].Date = "00000000";
-             ExcepRpt[0].Product = "";
-             ExcepRpt[0].NetAmount = "";
-             ExcepRpt[0].Settlement = "";
-             ExcepRpt[0].Variance = "";
-             ExcepRpt[0].Status = "";
-             ExcepRpt.push(ExcepObj);
-            
-            
-             var oModel = new JSONModel();
-             oModel.setData({listitem:ExcepRpt});
-             this.getView().setModel(oModel, "transactions");
 
-             if (!this.customDialog) {
-                 Fragment.load({
-                     name: "project1.ext.Card.List",
-                     controller: this
-                 }).then(function (customDialog) {
-                     this.customDialog = customDialog;
-                     this.customDialog.setModel(this.getView().getModel("transactions"));
-                     this.getView().addDependent(this.customDialog);
-                     this.customDialog.open();
-                 }.bind(this));
-             }
-         },
-         onCloseDialog: function () {
-             if (this._oDialog) {
-                 this._oDialog.close();
-             }
-         },
-        */
+        // ListReportFragment OnClick handler
+        OnClickHandler: function () {
+
+            var ExcepRpt = [{
+                MerchantID: "1250103504",
+                MerchantName: "SWITCH @ SUNWAY PYRAMID",
+                TransactionID: "123456789",
+                Type: "Cashbill",
+                RefNo: "WISS0076002",
+                SKU: "SKU1234",
+                Product: "12345",
+                Location: "SS",
+                SalesDate: "2025-01-08",
+                Status: "COMMITTED",
+                Info: "Others",
+                PaymentMethod: "RHBDUITNOW",
+                Quantity: "1",
+                GrossSales: "1",
+                Discount: "1",
+                NetAmount: "432.48",
+                EDCTerminalNo: "64529819",
+                SettlementDate: "2025-08-17",
+                EDCBatchNo: "225",
+                SettlementBatchNo: "82079",
+                CardNoTransID: "4364-34xx-xxxx-5841",
+                TransDate: "2025-08-17",
+                TransTime: "11:19:32",
+                ApprovalCode: "923621",
+                TransAmount: "434",
+                MDRRate: "0.35",
+                DiscAmount: "-1.52",
+                NettAmount: "432.48",
+                CardBrand: "Visa Prepaid",
+                InterchangeFeeCode: "PR",
+                RPPID: "1",
+                InstitutionName: "1",
+                AccountType: "1",
+                Name: "Switch",
+                MerchantTransactionID: "123456",
+            }, {
+                MerchantID: "1250103504",
+                MerchantName: "SWITCH @ SUNWAY PYRAMID",
+                TransactionID: "12414125",
+                Type: "Cashbill",
+                RefNo: "WISS0076002",
+                SKU: "SKU32345",
+                Product: "32345",
+                Location: "SS",
+                SalesDate: "2025-01-08",
+                Status: "COMMITTED",
+                Info: "O2480767374",
+                PaymentMethod: "Loyalty Redemption",
+                Quantity: "1",
+                GrossSales: "1",
+                Discount: "1",
+                NetAmount: "432.48",
+                EDCTerminalNo: "64529819",
+                SettlementDate: "2025-08-17",
+                EDCBatchNo: "225",
+                SettlementBatchNo: "82079",
+                CardNoTransID: "4363-45xx-xxxx-1725",
+                TransDate: "2025-08-17",
+                TransTime: "13:22:45",
+                ApprovalCode: "41656",
+                TransAmount: "344",
+                MDRRate: "0.7",
+                DiscAmount: "-2.41",
+                NettAmount: "341.59",
+                CardBrand: "Visa Credit",
+                InterchangeFeeCode: "CR",
+                RPPID: "2",
+                InstitutionName: "2",
+                AccountType: "2",
+                Name: "Switch",
+                MerchantTransactionID: "123141",
+            }, {
+                MerchantID: "1250103504",
+                MerchantName: "SWITCH @ SUNWAY PYRAMID",
+                TransactionID: "89172945",
+                Type: "Cashbill",
+                RefNo: "WISS0076002",
+                SKU: "SKU1241567",
+                Product: "1241567",
+                Location: "SS",
+                SalesDate: "2025-01-08",
+                Status: "COMMITTED",
+                Info: "Others",
+                PaymentMethod: "RHBDUITNOW",
+                Quantity: "1",
+                GrossSales: "1",
+                Discount: "1",
+                NetAmount: "432.48",
+                EDCTerminalNo: "64529819",
+                SettlementDate: "2025-08-17",
+                EDCBatchNo: "225",
+                SettlementBatchNo: "82079",
+                CardNoTransID: "4966-23xx-xxxx-6184",
+                TransDate: "2025-08-17",
+                TransTime: "13:32:15",
+                ApprovalCode: "923621",
+                TransAmount: "434",
+                MDRRate: "0.7",
+                DiscAmount: "-3.14",
+                NettAmount: "445.86",
+                CardBrand: "Visa Credit",
+                InterchangeFeeCode: "CR",
+                RPPID: "3",
+                InstitutionName: "3",
+                AccountType: "3",
+                Name: "Switch",
+                MerchantTransactionID: "334145",
+            }, {
+                MerchantID: "1250103504",
+                MerchantName: "SWITCH @ SUNWAY PYRAMID",
+                TransactionID: "123456789",
+                Type: "Cashbill",
+                RefNo: "WISS0076002",
+                SKU: "SKU1234",
+                Product: "12345",
+                Location: "SS",
+                SalesDate: "2025-01-08",
+                Status: "COMMITTED",
+                Info: "Others",
+                PaymentMethod: "RHBDUITNOW",
+                Quantity: "1",
+                GrossSales: "1",
+                Discount: "1",
+                NetAmount: "432.48",
+                EDCTerminalNo: "64529819",
+                SettlementDate: "2025-08-17",
+                EDCBatchNo: "225",
+                SettlementBatchNo: "82079",
+                CardNoTransID: "4364-34xx-xxxx-5841",
+                TransDate: "2025-08-17",
+                TransTime: "11:19:32",
+                ApprovalCode: "923621",
+                TransAmount: "434",
+                MDRRate: "0.35",
+                DiscAmount: "-1.52",
+                NettAmount: "432.48",
+                CardBrand: "Visa Prepaid",
+                InterchangeFeeCode: "PR",
+                RPPID: "1",
+                InstitutionName: "1",
+                AccountType: "1",
+                Name: "Switch",
+                MerchantTransactionID: "123456",
+            }, 
+        ];
+
+            var oModel = new JSONModel();
+            oModel.setData({ listitem: ExcepRpt });
+            this.getView().setModel(oModel, "exceprpt");
+
+            if (!this.customDialog) {
+                Fragment.load({
+                    name: "project1.ext.Card.List",
+                    controller: this
+                }).then(function (customDialog) {
+                    this.customDialog = customDialog;
+                    this.customDialog.setModel(this.getView().getModel("exceprpt"));
+                    this.getView().addDependent(this.customDialog);
+                    this.customDialog.open();
+                }.bind(this));
+            }
+        },
+        onCloseDialog: function () {
+            if (this.customDialog) {
+                this.customDialog.close();
+            }
+        },
 
         // ==================== NEW: DATE FILTER FUNCTIONS ====================
 
@@ -311,8 +438,10 @@ sap.ui.define([
                     return;
             }
 
+
             oModel.setProperty("/filterDateFrom", fromDate);
             oModel.setProperty("/filterDateTo", toDate);
+
 
             this.loadDashboardData();
             this.applyDateFilterToReconciliation(); // NEW: Apply to reconciliation tab
@@ -334,12 +463,14 @@ sap.ui.define([
         onAutoRefreshToggle: function (oEvent) {
             var bState = oEvent.getParameter("state");
 
+
             if (bState) {
                 // Start auto-refresh every 2 minutes
                 this._autoRefreshInterval = setInterval(() => {
                     this.loadDashboardData();
                     this.applyDateFilterToReconciliation(); // NEW: Apply to reconciliation tab
                 }, 120000); // 120000ms = 2 minutes
+
 
                 MessageToast.show("Auto-refresh enabled (every 2 minutes)");
             } else {
@@ -359,6 +490,7 @@ sap.ui.define([
             var sDateTo = oModel.getProperty("/filterDateTo");
             var sCurrentFilter = oModel.getProperty("/currentFilter");
 
+
             // Reapply the current filter with new date range
             this.filterReconciliationData(sCurrentFilter, sDateFrom, sDateTo);
         },
@@ -367,6 +499,7 @@ sap.ui.define([
             var oModel = this.getView().getModel();
             var sDateFrom = oModel.getProperty("/filterDateFrom");
             var sDateTo = oModel.getProperty("/filterDateTo");
+
 
             // Simulate API call with setTimeout
             setTimeout(() => {
@@ -377,6 +510,7 @@ sap.ui.define([
                 // For now, we'll just show a success message
                 sap.ui.core.BusyIndicator.hide();
                 MessageToast.show("Dashboard data refreshed for " + sDateFrom + " to " + sDateTo);
+
 
                 // Load recent activity
                 this.loadRecentActivity();
@@ -464,8 +598,34 @@ sap.ui.define([
                     action: "Exception Report Generated",
                     timestamp: "2 days ago",
                     icon: "sap-icon://document"
+                },
+                {
+                    action: "Manual Review Required - Transaction #8834",
+                    timestamp: "Yesterday at 4:32 PM",
+                    icon: "sap-icon://warning"
+                },
+                {
+                    action: "Merchant Settlement Processed",
+                    timestamp: "Yesterday at 2:15 PM",
+                    icon: "sap-icon://money-bills"
+                },
+                {
+                    action: "Rules Engine Updated",
+                    timestamp: "Yesterday at 11:20 AM",
+                    icon: "sap-icon://edit"
+                },
+                {
+                    action: "Batch Processing Started - 1,834 transactions",
+                    timestamp: "2 days ago",
+                    icon: "sap-icon://play"
+                },
+                {
+                    action: "Exception Report Generated",
+                    timestamp: "2 days ago",
+                    icon: "sap-icon://document"
                 }
             ];
+
 
             oModel.setProperty("/recentActivity", aActivity);
 
@@ -502,15 +662,18 @@ sap.ui.define([
             var diffHours = Math.floor(diffMs / 3600000);
             var diffDays = Math.floor(diffMs / 86400000);
 
+
             if (diffMins < 60) {
                 return diffMins + " minutes ago";
             } else if (diffHours < 24) {
                 return diffHours + " hours ago";
             } else if (diffDays === 1) {
                 return "Yesterday at " + oDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                return "Yesterday at " + oDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             } else if (diffDays < 7) {
                 return diffDays + " days ago";
             } else {
+                return oDate.toLocaleDateString() + " " + oDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                 return oDate.toLocaleDateString() + " " + oDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             }
         },
@@ -558,7 +721,33 @@ sap.ui.define([
             // Open the dialog
             this._oTransactionDialog.open();
         },
+        onReviewTransaction: function (oEvent) {
+            var oButton = oEvent.getSource();
+            var oContext = oButton.getBindingContext();
+            var oTransaction = oContext.getObject();
 
+            // Create dialog if it doesn't exist
+            if (!this._oTransactionDialog) {
+                this._oTransactionDialog = sap.ui.xmlfragment(
+                    "project1.view.TransactionDetails",
+                    this
+                );
+                this.getView().addDependent(this._oTransactionDialog);
+            }
+
+            // Set the transaction data to a separate model property
+            var oModel = this.getView().getModel();
+            oModel.setProperty("/selectedTransaction", oTransaction);
+
+            // Open the dialog
+            this._oTransactionDialog.open();
+        },
+
+        onCloseTransactionDialog: function () {
+            if (this._oTransactionDialog) {
+                this._oTransactionDialog.close();
+            }
+        },
         onCloseTransactionDialog: function () {
             if (this._oTransactionDialog) {
                 this._oTransactionDialog.close();
@@ -926,7 +1115,17 @@ sap.ui.define([
                 this._oPOSDialog.close();
             }
         },
+        onClosePOSDialog: function () {
+            if (this._oPOSDialog) {
+                this._oPOSDialog.close();
+            }
+        },
 
+        onCloseMerchantDialog: function () {
+            if (this._oMerchantDialog) {
+                this._oMerchantDialog.close();
+            }
+        },
         onCloseMerchantDialog: function () {
             if (this._oMerchantDialog) {
                 this._oMerchantDialog.close();
@@ -1020,7 +1219,6 @@ sap.ui.define([
         },
 
         // ==================== EXISTING: EVENT HANDLERS FOR RULES ENGINE ====================
-
         onAddRule: function () {
             MessageToast.show("Add New Rule clicked");
         },
@@ -1059,7 +1257,6 @@ sap.ui.define([
         },
 
         // ==================== EXISTING: EVENT HANDLERS FOR OTHER TABS ====================
-
         onSearchPOS: function (oEvent) {
             var sQuery = oEvent.getParameter("query");
             MessageToast.show("Search: " + sQuery);
@@ -1077,12 +1274,10 @@ sap.ui.define([
             MessageToast.show("Transaction pressed");
         },
 
-
         onRefresh: function () {
             // Update to use the new refresh function
             this.onRefreshData();
         },
-
         // ==================== NEW: CARD PRESS HANDLER ====================
 
         onCardPress: function (oEvent) {
@@ -1092,8 +1287,10 @@ sap.ui.define([
             var sDateFrom = oModel.getProperty("/filterDateFrom");
             var sDateTo = oModel.getProperty("/filterDateTo");
 
+
             // Get the main tab bar and switch to Reconciliation tab
             var oTabBar = this.byId("mainTabBar");
+
 
             if (!oTabBar) {
                 MessageBox.error("Tab bar not found. Please check the ID 'mainTabBar' in your view.");
@@ -1108,6 +1305,7 @@ sap.ui.define([
                     MessageToast.show("Showing all reconciliation data");
                     break;
 
+
                 case "matched":
                     // Show only matched data
                     oTabBar.setSelectedKey("recon");
@@ -1115,11 +1313,14 @@ sap.ui.define([
                     MessageToast.show("Showing matched reconciliation data");
                     break;
 
+
                 case "discrepancies":
                     // Show only discrepancies/unmatched/ pending data
                     oTabBar.setSelectedKey("recon");
                     this.filterReconciliationData("unmatched", "Pending POS", "Pending Smtmt", sDateFrom, sDateTo);
                     MessageToast.show("Showing discrepancy data");
+                    break;
+
                     break;
 
             }
@@ -1131,23 +1332,28 @@ sap.ui.define([
                 return; // Table not found yet
             }
 
+
             var oBinding = oTable.getBinding("items");
             if (!oBinding) {
                 return; // Binding not ready yet
             }
 
+
             var aFilters = [];
+
 
             // Add date filters
             if (sDateFrom && sDateTo) {
                 aFilters.push(new Filter("transDate", FilterOperator.BT, sDateFrom, sDateTo));
             }
 
+
             // Add status filters based on card type
             switch (sFilterType) {
                 case "matched":
                     aFilters.push(new Filter("status", FilterOperator.EQ, "Matched"));
                     break;
+
 
                 case "discrepancies":
                     aFilters.push(new Filter({
@@ -1159,13 +1365,16 @@ sap.ui.define([
                     }));
                     break;
 
+
                 case "all":
                 default:
                     // No status filter - show all
                     break;
             }
 
+
             oBinding.filter(aFilters);
+
 
             // Store current filter in model for reference
             this.getView().getModel().setProperty("/currentFilter", sFilterType);
@@ -1176,9 +1385,11 @@ sap.ui.define([
             var sDateFrom = oModel.getProperty("/filterDateFrom");
             var sDateTo = oModel.getProperty("/filterDateTo");
 
+
             this.filterReconciliationData("all", sDateFrom, sDateTo);
             MessageToast.show("Filters cleared - showing all data");
         }
+
 
 
 
