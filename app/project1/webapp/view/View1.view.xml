@@ -244,6 +244,7 @@
                     </IconTabFilter>
 
                     <!-- RECONCILIATION TAB -->
+                    
                     <IconTabFilter id="reconTab" icon="sap-icon://receipt" text="Reconciliation" key="recon">
                         <Panel id="_IDGenPanel2" headerText="Reconciliation - {/currentFilter}">
                             <headerToolbar>

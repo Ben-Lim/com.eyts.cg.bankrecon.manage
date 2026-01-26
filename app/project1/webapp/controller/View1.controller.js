@@ -52,8 +52,6 @@ sap.ui.define([
                         status: "Matched"
                     },
                     {
-                    },
-                    {
                         transDate: "2026-01-22",
                         store: "SWITCH @ WANGSA WALK MALL",
                         transactionId: "234567890",

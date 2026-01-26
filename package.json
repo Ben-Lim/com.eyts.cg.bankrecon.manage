@@ -11,7 +11,8 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-project2": "cds watch --open project2/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "cds": {
     "build": {
@@ -47,5 +48,8 @@
   ],
   "devDependencies": {
     "cds-plugin-ui5": "^0.13.0"
-  }
+  },
+  "sapux": [
+    "app/project2"
+  ]
 }
