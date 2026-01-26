@@ -199,7 +199,7 @@
     </VBox>
 
     <!-- Card 3: Discrepancies -->
-    <VBox id="cardBox3" width="32%">
+    <VBox id="cardBox3" class="sapUiSmallMarginEnd" width="32%">
         <f:Card id="discrepanciesCard" width="100%" height="100%">
             <f:customData>
                 <core:CustomData id="discrepanciesCardData" key="cardType" value="discrepancies" />
@@ -217,7 +217,7 @@
                     <Button id="cardBtn3" 
                         text="View Details" 
                         type="Transparent" 
-                        press=".OnClickHandler"
+                        press="onCardPress"
                         width="100%"
                         class="sapUiTinyMarginTop">
                         <!-- <customData>

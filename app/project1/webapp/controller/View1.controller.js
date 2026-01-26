@@ -1317,8 +1317,8 @@ sap.ui.define([
                 case "discrepancies":
                     // Show only discrepancies/unmatched/ pending data
                     oTabBar.setSelectedKey("recon");
-                    this.filterReconciliationData("unmatched", "Pending POS", "Pending Smtmt", sDateFrom, sDateTo);
-                    MessageToast.show("Showing discrepancy data");
+                    this.filterReconciliationData("discrepancies", sDateFrom, sDateTo);
+                    MessageToast.show("Showing discrepancies reconciliation data");
                     break;
 
                     break;
@@ -1359,7 +1359,8 @@ sap.ui.define([
                     aFilters.push(new Filter({
                         filters: [
                             new Filter("status", FilterOperator.EQ, "Unmatched"),
-                            new Filter("status", FilterOperator.EQ, "Pending")
+                            new Filter("status", FilterOperator.EQ, "Pending POS"),
+                            new Filter("status", FilterOperator.EQ, "Pending Stmt")
                         ],
                         and: false // OR condition
                     }));
