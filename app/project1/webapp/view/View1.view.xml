@@ -220,9 +220,9 @@
                         press="onCardPress"
                         width="100%"
                         class="sapUiTinyMarginTop">
-                        <!-- <customData>
+                        <customData>
                             <core:CustomData key="cardType" value="discrepancies" />
-                        </customData> -->
+                        </customData>
                     </Button>
                 </VBox>
             </f:content>
