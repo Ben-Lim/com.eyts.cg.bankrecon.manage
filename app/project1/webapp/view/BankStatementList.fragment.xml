@@ -1,0 +1,68 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    
+    <Dialog id="_IDGenDialog5"
+        title="Bank Statement List"
+        contentWidth="95%"
+        contentHeight="90%"
+        resizable="true"
+        draggable="true">
+        
+        <content>
+            <Table id="_IDGenTable3"
+                items="{/bankStatementsList}"
+                growing="true"
+                growingThreshold="20">
+                <columns>
+                    <Column id="_IDGenColumn60" width="3%"><Text id="_IDGenText112" text="No."/></Column>
+                    <Column id="_IDGenColumn61"><Text id="_IDGenText113" text="Merchant Name"/></Column>
+                    <Column id="_IDGenColumn62"><Text id="_IDGenText114" text="Merchant ID"/></Column>
+                    <Column id="_IDGenColumn63"><Text id="_IDGenText115" text="EDC Terminal No."/></Column>
+                    <Column id="_IDGenColumn64"><Text id="_IDGenText116" text="Settlement Date"/></Column>
+                    <Column id="_IDGenColumn65"><Text id="_IDGenText117" text="EDC Batch No."/></Column>
+                    <Column id="_IDGenColumn66"><Text id="_IDGenText118" text="Statement Batch No."/></Column>
+                    <Column id="_IDGenColumn67"><Text id="_IDGenText119" text="Card No./Trans. ID"/></Column>
+                    <Column id="_IDGenColumn68"><Text id="_IDGenText1200" text="Trans. Date"/></Column>
+                    <Column id="_IDGenColumn69"><Text id="_IDGenText121" text="Trans. Time"/></Column>
+                    <Column id="_IDGenColumn70"><Text id="_IDGenText122" text="Approval Code"/></Column>
+                    <Column id="_IDGenColumn71"><Text id="_IDGenText123" text="Trans. Amount"/></Column>
+                    <Column id="_IDGenColumn72"><Text id="_IDGenText124" text="MDR Rate"/></Column>
+                    <Column id="_IDGenColumn73"><Text id="_IDGenText125" text="Disc. Amount"/></Column>
+                    <Column id="_IDGenColumn74"><Text id="_IDGenText126" text="Nett Amount"/></Column>
+                    <Column id="_IDGenColumn75"><Text id="_IDGenText127" text="Card Brand"/></Column>
+                    <Column id="_IDGenColumn76"><Text id="_IDGenText128" text="Interchange Fee Code"/></Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="_IDGenColumnListItem5">
+                        <cells>
+                            <Text id="_IDGenText129" text="{no}"/>
+                            <Text id="_IDGenText130" text="{merchantName}"/>
+                            <Text id="_IDGenText131" text="{merchantId}"/>
+                            <Text id="_IDGenText132" text="{edcTerminalNo}"/>
+                            <Text id="_IDGenText133" text="{settlementDate}"/>
+                            <Text id="_IDGenText134" text="{edcBatchNo}"/>
+                            <Text id="_IDGenText135" text="{statementBatchNo}"/>
+                            <Text id="_IDGenText136" text="{cardNoTransId}"/>
+                            <Text id="_IDGenText137" text="{transDate}"/>
+                            <Text id="_IDGenText138" text="{transTime}"/>
+                            <Text id="_IDGenText139" text="{approvalCode}"/>
+                            <Text id="_IDGenText140" text="{transAmount}"/>
+                            <Text id="_IDGenText141" text="{mdrRate}"/>
+                            <Text id="_IDGenText142" text="{discAmount}"/>
+                            <Text id="_IDGenText143" text="{nettAmount}"/>
+                            <Text id="_IDGenText144" text="{cardBrand}"/>
+                            <Text id="_IDGenText145" text="{interchangeFeeCode}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        
+        <buttons>
+            <Button id="_IDGenButton15" text="Close" press=".onCloseBankDialog"/>
+        </buttons>
+        
+    </Dialog>
+    
+</core:FragmentDefinition>

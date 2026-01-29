@@ -86,7 +86,7 @@
                                     <f:header>
                                         <card:Header id="amountSummaryHeader"
                                             title="Reconciliation Amount Summary"
-                                            subtitle="POS Sales and Merchant Settlement Overview"/>
+                                            subtitle="POS Sales and Bank Statement Overview"/>
                                     </f:header>
                                     <f:content>
                                         <l:Grid id="_IDGenGrid1" defaultSpan="XL4 L4 M4 S12" class="sapUiSmallMargin">
@@ -145,7 +145,7 @@
             <f:header>
                 <card:Header id="totalReconciliationHeader"
                     title="1857"  
-                    subtitle="Total Reconciliation of POS Sales and Merchant Settlement"
+                    subtitle="Total Reconciliation of POS Sales and Bank Statement"
                     iconSrc="sap-icon://sum"
                     iconDisplayShape="Circle"/>
             </f:header>

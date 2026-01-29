@@ -37,8 +37,7 @@ sap.ui.define([
                 // Mock data for transactions
                 transactions: [
                     {
-                        transDate: "2026-01-22",
-                        transDate: "2026-01-22",
+                        transDate: "2026-01-25",
                         store: "SWITCH @ SUNWAY PYRAMID",
                         transactionId: "123456789",
                         merchantId: "1250103504",
@@ -47,12 +46,12 @@ sap.ui.define([
                         mdrRate: "3.24%",
                         discAmount: "-10.01",
                         nettAmount: "12448.88",
-                        settlement: "12053.41",
+                        settlement: "12448.88",
                         variance: "N/A",
                         status: "Matched"
                     },
                     {
-                        transDate: "2026-01-22",
+                        transDate: "2026-01-25",
                         store: "SWITCH @ WANGSA WALK MALL",
                         transactionId: "234567890",
                         merchantId: "1250103652",
@@ -61,12 +60,12 @@ sap.ui.define([
                         mdrRate: "3.23%",
                         discAmount: "-5.01",
                         nettAmount: "25314.15",
-                        settlement: "24502.22",
+                        settlement: "25314.15",
                         variance: "N/A",
                         status: "Matched"
                     },
                     {
-                        transDate: "2026-01-22",
+                        transDate: "2026-01-24",
                         store: "UR BY SWITCH @ KUALA SELA",
                         transactionId: "290192922",
                         merchantId: "1250105988",
@@ -75,12 +74,12 @@ sap.ui.define([
                         mdrRate: "3.24%",
                         discAmount: "-3.01",
                         nettAmount: "160.42",
-                        settlement: "158.13",
-                        variance: "4.99",
+                        settlement: "150.43",
+                        variance: "9.99",
                         status: "Unmatched"
                     },
                     {
-                        transDate: "2026-01-21",
+                        transDate: "2026-01-23",
                         store: "URBAN REPUBLIC @ KL EAST",
                         transactionId: "299186384",
                         merchantId: "1250104882",
@@ -90,11 +89,11 @@ sap.ui.define([
                         discAmount: "-2.01",
                         nettAmount: "4762.43",
                         settlement: "4610.78",
-                        variance: "9.99",
+                        variance: "151.65",
                         status: "Unmatched"
                     },
                     {
-                        transDate: "2026-01-21",
+                        transDate: "2026-01-23",
                         store: "UR BY SWITCH @ PLAZA KLTS",
                         transactionId: "172839112",
                         merchantId: "1250104734",
@@ -108,7 +107,7 @@ sap.ui.define([
                         status: "Pending POS"
                     },
                     {
-                        transDate: "2026-01-20",
+                        transDate: "2026-01-22",
                         store: "URBAN REPUBLIC @ PAVILION",
                         transactionId: "288094632",
                         merchantId: "1250104833",
@@ -216,8 +215,7 @@ sap.ui.define([
                         selected: false
                     }
                 ],
-
-
+                
                 // Counter for selected rules
                 selectedRulesCount: 0
             };
@@ -719,27 +717,6 @@ sap.ui.define([
             // Open the dialog
             this._oTransactionDialog.open();
         },
-        onReviewTransaction: function (oEvent) {
-            var oButton = oEvent.getSource();
-            var oContext = oButton.getBindingContext();
-            var oTransaction = oContext.getObject();
-
-            // Create dialog if it doesn't exist
-            if (!this._oTransactionDialog) {
-                this._oTransactionDialog = sap.ui.xmlfragment(
-                    "project1.view.TransactionDetails",
-                    this
-                );
-                this.getView().addDependent(this._oTransactionDialog);
-            }
-
-            // Set the transaction data to a separate model property
-            var oModel = this.getView().getModel();
-            oModel.setProperty("/selectedTransaction", oTransaction);
-
-            // Open the dialog
-            this._oTransactionDialog.open();
-        },
 
         onCloseTransactionDialog: function () {
             if (this._oTransactionDialog) {
@@ -874,34 +851,34 @@ sap.ui.define([
             this._oPOSDialog.open();
         },
 
-        onViewMerchantStatement: function () {
+        onViewBankStatement: function () {
             var oModel = this.getView().getModel();
             var oTransaction = oModel.getProperty("/selectedTransaction");
 
             // CHECK STATUS FIRST - if Pending Stmt, show empty state
             if (oTransaction.status === "Pending Stmt") {
-                // Set empty merchant statement data
-                oModel.setProperty("/merchantStatementsList", []);
+                // Set empty bank statement data
+                oModel.setProperty("/bankStatementsList", []);
 
-                // Create and open Merchant Statement dialog with empty data
-                if (!this._oMerchantDialog) {
-                    this._oMerchantDialog = sap.ui.xmlfragment(
-                        "project1.view.MerchantStatementList",
+                // Create and open Bank Statement dialog with empty data
+                if (!this._oBankDialog) {
+                    this._oBankDialog = sap.ui.xmlfragment(
+                        "project1.view.BankStatementList",
                         this
                     );
-                    this.getView().addDependent(this._oMerchantDialog);
+                    this.getView().addDependent(this._oBankDialog);
                 }
 
-                this._oMerchantDialog.open();
+                this._oBankDialog.open();
 
                 // Optionally show a message
-                MessageToast.show("No merchant statement data available for pending transactions");
+                MessageToast.show("No bank statement data available for pending transactions");
                 return; // Exit the function early
             }
 
             // EXISTING CODE - Only execute for non-Pending transactions
-            // Mock merchant statement data from your Excel
-            var aMerchantStatements = [
+            // Mock bank statement data from your Excel
+            var aBankStatements = [
                 {
                     no: "1",
                     merchantName: oTransaction.store,
@@ -1094,18 +1071,18 @@ sap.ui.define([
                 }
             ];
 
-            oModel.setProperty("/merchantStatementsList", aMerchantStatements);
+            oModel.setProperty("/bankStatementsList", aBankStatements);
 
-            // Create and open Merchant Statement dialog
-            if (!this._oMerchantDialog) {
-                this._oMerchantDialog = sap.ui.xmlfragment(
-                    "project1.view.MerchantStatementList",
+            // Create and open Bank Statement dialog
+            if (!this._oBankDialog) {
+                this._oBankDialog = sap.ui.xmlfragment(
+                    "project1.view.BankStatementList",
                     this
                 );
-                this.getView().addDependent(this._oMerchantDialog);
+                this.getView().addDependent(this._oBankDialog);
             }
 
-            this._oMerchantDialog.open();
+            this._oBankDialog.open();
         },
 
         onClosePOSDialog: function () {
@@ -1119,14 +1096,14 @@ sap.ui.define([
             }
         },
 
-        onCloseMerchantDialog: function () {
-            if (this._oMerchantDialog) {
-                this._oMerchantDialog.close();
+        onCloseBankDialog: function () {
+            if (this._oBankDialog) {
+                this._oBankDialog.close();
             }
         },
-        onCloseMerchantDialog: function () {
-            if (this._oMerchantDialog) {
-                this._oMerchantDialog.close();
+        onCloseBankDialog: function () {
+            if (this._oBankDialog) {
+                this._oBankDialog.close();
             }
         },
 

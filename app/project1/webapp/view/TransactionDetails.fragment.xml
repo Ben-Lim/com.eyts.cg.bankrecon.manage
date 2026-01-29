@@ -82,7 +82,7 @@
                 <MessageStrip id="_IDGenMessageStrip"
                     text="{= ${/selectedTransaction/status} === 'Matched' ? 'No Variance Detected - Settlement amount matched expected net amount.' : 
                             ${/selectedTransaction/status} === 'Unmatched' ? 'Variance detected - Settlement amount differs from expected net amount. This may be due to payment processor fees (' + ${/selectedTransaction/variance} + ').' :
-                            'Variance detected - Settlement amount differs from expected net amount. This may be due to pending payment processing to merchant.' }"
+                            'Variance detected - Settlement amount differs from expected net amount. This may be due to pending payment processing from POS Transaction/Bank Statement.' }"
                     type="{= ${/selectedTransaction/status} === 'Matched' ? 'Success' : 'Warning' }"
                     showIcon="true"
                     class="sapUiSmallMarginTop">
@@ -99,10 +99,10 @@
                             press=".onViewPOSTransaction"
                             class="sapUiTinyMarginEnd"/>
                         <Button id="_IDGenButton1"
-                            text="Merchant Statement"
+                            text="Bank Statement"
                             icon="sap-icon://account"
                             type="Emphasized"
-                            press=".onViewMerchantStatement"/>
+                            press=".onViewBankStatement"/>
                     </HBox>
                 </VBox>
                 
