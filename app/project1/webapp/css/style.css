@@ -4,207 +4,81 @@
 #reconTab {
     min-width: 150px !important;
 }
-*/
-/* Or target all icon tab filters 
+Or target all icon tab filters
 .sapMITBFilter {
     min-width: 140px !important;
-}
-*/
-/* ============================================
-   Financial Reconciliation System - Enhanced UI Styles
-   ============================================ */
+}*/
 
-/* === Global Font Size Increases === */
-.sapUiBody {
-    font-size: 16px !important;
-}
+/* ===========================
+   FIX: Reconciliation tab text truncation
+   =========================== */
 
-/* === Tab Bar Enhancements === */
-#mainTabBar .sapMITBText {
-    font-size: 16px !important;
-    font-weight: 500 !important;
-    white-space: nowrap !important;
+/* Target the exact text container UI5 renders */
+[id$="--reconTab-text"].sapMITBText,
+[id$="--reconTab-text"] {
+  max-width: none !important;
+  width: auto !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: nowrap !important; /* keep it one line */
 }
 
-/* Expand tab filter to show full text */
-#mainTabBar .sapMITBFilter {
-    min-width: auto !important;
-    width: auto !important;
+/* Also ensure the inner text span doesn't force ellipsis */
+[id$="--reconTab-text"] .sapMITBTextContent {
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: nowrap !important;
 }
 
-/* Ensure tab text doesn't truncate */
-#mainTabBar .sapMITBFilterDefault .sapMITBText {
-    overflow: visible !important;
-    text-overflow: clip !important;
-    white-space: normal !important;
-    max-width: none !important;
+/* =========================
+   Dashboard Font Scaling
+   ========================= <l:VerticalLayout id="_IDGenVerticalLayout" width="100%" class="dashboardZoom"> */
+
+/* Bigger page title "Financial Reconciliation System" */
+#reconciliationPage .sapMTitle {
+  font-size: 1.4rem !important;
 }
 
-/* Icon and text spacing in tabs */
-#mainTabBar .sapMITBContentArrow {
-    padding: 0.5rem 1.5rem !important;
+/* Dashboard-only scaling */
+.dashboardZoom .sapMTitle {
+  font-size: 1.2rem !important;
 }
 
-/* === Page Title === */
-.sapMPageHeader .sapMTitle {
-    font-size: 22px !important;
-    font-weight: 600 !important;
+/* KPI numbers in Card Headers (e.g. 1857 / 1,834 / 23) */
+.dashboardZoom .sapFCardHeader .sapFCardHeaderText .sapFCardTitle {
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
 }
 
-/* === Panel Headers === */
-.sapMPanelHdr .sapMTitle {
-    font-size: 18px !important;
-    font-weight: 600 !important;
+/* Card subtitles */
+.dashboardZoom .sapFCardHeader .sapFCardSubtitle {
+  font-size: 1.05rem !important;
 }
 
-/* === Card Headers === */
-.sapFCardHeader .sapFCardHeaderTitle {
-    font-size: 18px !important;
-    font-weight: 600 !important;
+/* Labels / normal texts under KPIs */
+.dashboardZoom .sapMText {
+  font-size: 1rem !important;
 }
 
-.sapFCardHeader .sapFCardHeaderSubtitle {
-    font-size: 14px !important;
+/* ObjectStatus text like "+12% from yesterday" */
+.dashboardZoom .sapMObjStatusText {
+  font-size: 1rem !important;
 }
 
-/* === KPI Card Values === */
-#totalReconciliationCard .sapMTitle,
-#matchedTodayCard .sapMTitle,
-#discrepanciesCard .sapMTitle {
-    font-size: 36px !important;
-    font-weight: 700 !important;
+/* Buttons e.g. View Details */
+.dashboardZoom .sapMBtnInner {
+  font-size: 1rem !important;
 }
 
-/* === Amount Summary Card === */
-#amountSummaryCard .sapMTitle {
-    font-size: 32px !important;
-    font-weight: 700 !important;
+/* Amount summary big numbers */
+.dashboardZoom [id$="--totalAmountTitle"],
+.dashboardZoom [id$="--matchedAmountTitle"],
+.dashboardZoom [id$="--unmatchedAmountTitle"] {
+  font-size: 2rem !important;
+  font-weight: 800 !important;
 }
 
-#amountSummaryCard .sapMText {
-    font-size: 15px !important;
-}
 
-#amountSummaryCard .sapMObjectStatus {
-    font-size: 14px !important;
-}
-
-/* === Table Headers === */
-.sapMListTblHeaderCell .sapMText,
-.sapMListTblHeaderCell .sapMLabel {
-    font-size: 15px !important;
-    font-weight: 600 !important;
-}
-
-/* === Table Content === */
-.sapMListTbl .sapMText {
-    font-size: 14px !important;
-}
-
-.sapMListTbl .sapMObjectNumber {
-    font-size: 14px !important;
-}
-
-.sapMListTbl .sapMObjectIdentifier {
-    font-size: 14px !important;
-}
-
-/* === Buttons === */
-.sapMBtn .sapMBtnInner {
-    font-size: 15px !important;
-}
-
-.sapMBtnEmphasized .sapMBtnInner {
-    font-weight: 600 !important;
-}
-
-/* === Input Fields and Labels === */
-.sapMLabel {
-    font-size: 15px !important;
-}
-
-.sapMInputBaseInner {
-    font-size: 15px !important;
-}
-
-.sapMDatePicker .sapMInputBaseInner {
-    font-size: 15px !important;
-}
-
-/* === Search Field === */
-.sapMSF .sapMSFI {
-    font-size: 15px !important;
-}
-
-/* === Toolbar Text === */
-.sapMTB .sapMText {
-    font-size: 15px !important;
-}
-
-/* === Object Status === */
-.sapMObjectStatus {
-    font-size: 14px !important;
-}
-
-/* === List Items === */
-.sapMSLI .sapMSLITitle {
-    font-size: 15px !important;
-}
-
-.sapMSLI .sapMSLIDescription {
-    font-size: 14px !important;
-}
-
-/* === Segmented Button === */
-.sapMSegB .sapMSegBBtn {
-    font-size: 14px !important;
-}
-
-/* === Switch === */
-.sapMSwitch .sapMSwitchText {
-    font-size: 14px !important;
-}
-
-/* === Dashboard Filter Panel === */
-#filterPanel .sapMTitle {
-    font-size: 18px !important;
-}
-
-/* === Recent Activity Section === */
-#_IDGenPanel1 .sapMStandardListItem {
-    min-height: 3.5rem !important;
-}
-
-/* === Responsive Adjustments === */
-@media (max-width: 1024px) {
-    .sapUiBody {
-        font-size: 15px !important;
-    }
-    
-    #mainTabBar .sapMITBText {
-        font-size: 15px !important;
-    }
-}
-
-@media (max-width: 600px) {
-    .sapUiBody {
-        font-size: 14px !important;
-    }
-    
-    #mainTabBar .sapMITBText {
-        font-size: 14px !important;
-    }
-    
-    #mainTabBar .sapMITBContentArrow {
-        padding: 0.5rem 1rem !important;
-    }
-}
-
-/* === Ensure proper spacing for expanded tabs === */
-#mainTabBar .sapMITH {
-    overflow-x: auto !important;
-}
-
-#mainTabBar .sapMITBHead {
-    flex-wrap: nowrap !important;
+body {
+  outline: 5px solid red !important;
 }

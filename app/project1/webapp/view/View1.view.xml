@@ -14,7 +14,7 @@
                 <items>
                     <!-- DASHBOARD TAB -->
                     <IconTabFilter id="dashboardTab" icon="sap-icon://business-objects-experience" text="Dashboard" key="dashboard">
-                        <l:VerticalLayout id="_IDGenVerticalLayout" width="100%">
+                        <l:VerticalLayout id="_IDGenVerticalLayout" width="100%" >
 
                         <!--  Date Filter and Action Controls -->
         <Panel id="filterPanel" class="sapUiSmallMargin">
